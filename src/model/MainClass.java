@@ -6,6 +6,7 @@ public class MainClass {
 		Square s = Square.Floor;
 		Game game = new Game();
 		game.start();
+		
 	}
 	
 }
