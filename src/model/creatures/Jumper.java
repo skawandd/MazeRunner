@@ -2,7 +2,7 @@ package model.creatures;
 
 import model.Creature;
 
-public class Jumper implements Creature {
+public class Jumper extends Creature {
 	@Override
 	public boolean isAlive() {
 		// TODO Auto-generated method stub

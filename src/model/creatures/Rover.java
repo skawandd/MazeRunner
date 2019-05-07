@@ -2,7 +2,7 @@ package model.creatures;
 
 import model.Creature;
 
-public class Rover implements Creature{
+public class Rover extends Creature{
 
 	@Override
 	public boolean isAlive() {

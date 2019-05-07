@@ -1,6 +1,8 @@
 package model;
 
-public interface Creature extends Element{
-	public boolean isAlive();
-	public void move();
+public abstract class Creature implements Element{
+	
+	public abstract boolean isAlive();
+	public abstract void move();
+	
 }

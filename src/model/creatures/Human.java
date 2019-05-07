@@ -1,29 +1,18 @@
 package model.creatures;
 
 import model.Creature;
-import java.util.Scanner;
 
-public class Human implements Creature{
-	private int hp;
-	private int power;
-	private int range;
-	
-	public Human() {
-		this.hp = 10;
-		this.power = 0;
-		this.range = 1;
-	}
-	
+public class Human extends Creature{
+
 	@Override
 	public boolean isAlive() {
-		if(hp > 0)
-			return true;
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void move() {		
+	public void move() {
+		// TODO Auto-generated method stub
 		
 	}
-
 }
