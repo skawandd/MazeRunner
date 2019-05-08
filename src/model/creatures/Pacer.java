@@ -1,13 +1,13 @@
 package model.creatures;
 
 import model.Creature;
+import model.Square;
 
 public class Pacer extends Creature{
 
-	@Override
-	public boolean isAlive() {
-		// TODO Auto-generated method stub
-		return false;
+	public Pacer(Square currentSquare) {
+		super(9, currentSquare);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

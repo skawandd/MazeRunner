@@ -1,12 +1,12 @@
 package model.creatures;
 
 import model.Creature;
+import model.Square;
 
 public class Jumper extends Creature {
-	@Override
-	public boolean isAlive() {
-		// TODO Auto-generated method stub
-		return false;
+	public Jumper(Square currentSquare) {
+		super(8, currentSquare);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

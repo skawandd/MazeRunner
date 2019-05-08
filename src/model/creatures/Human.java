@@ -1,13 +1,13 @@
 package model.creatures;
 
 import model.Creature;
+import model.Square;
 
 public class Human extends Creature{
-
-	@Override
-	public boolean isAlive() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public Human(Square currentSquare) {
+		super(7, currentSquare);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

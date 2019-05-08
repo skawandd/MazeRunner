@@ -1,21 +1,26 @@
 package model;
 
-public enum Square implements Element{
-	Empty(),
-	Floor(),
-	Brick(),
-	Hyper(),
-	Freezer(),
-	Ladder(),
-	Goal();
+public class Square {
+	private int id;
+	private boolean apple, dig, alive;
 	
-	private boolean apple, dig;
-	
-	private Square() {
+	public Square(int id) {
+		this.id = id;
 		this.apple = false;
 		this.dig = false;
+		this.alive = false;
 	}
 	
+	public Square(int id, boolean alive) {
+		this(id);
+		this.alive = alive;
+	}
+	
+	public boolean isAlive() {
+		return alive;
+	}
+
+	/*
 	public void addApple() {
 		if(this == Floor)
 			Floor.apple = true;
@@ -44,4 +49,9 @@ public enum Square implements Element{
 		return this.dig;
 	}
 
+	@Override
+	public Square getElement() {
+		return this;
+	}
+	*/
 }
