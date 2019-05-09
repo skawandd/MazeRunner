@@ -20,15 +20,15 @@ public class Square {
 		return alive;
 	}
 
-	/*
+	
 	public void addApple() {
-		if(this == Floor)
-			Floor.apple = true;
+		if(id == 1)
+			apple = true;
 	}
 	
 	public void removeApple() {
-		if(this == Floor)
-			Floor.apple = false;
+		if(id == 1)
+			apple = false;
 	}
 	
 	public boolean getApple() {
@@ -36,22 +36,17 @@ public class Square {
 	}
 	
 	public void addDig() {
-		if(this == Brick)
-			Floor.dig = true;
+		if(id == 2)
+			dig = true;
 	}
 	
 	public void removeDig() {
-		if(this == Brick)
-			Floor.dig = false;
+		if(id == 2)
+			dig = false;
 	}
 	
 	public boolean getDig() {
 		return this.dig;
 	}
 
-	@Override
-	public Square getElement() {
-		return this;
-	}
-	*/
 }
