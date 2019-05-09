@@ -19,7 +19,18 @@ public class Square {
 	public boolean isAlive() {
 		return alive;
 	}
+	
+	public int getId() {
+		return this.id;
+	}
 
+	public boolean getApple() {
+		return this.apple;
+	}
+	
+	public boolean getDig() {
+		return this.dig;
+	}
 	/*
 	public void addApple() {
 		if(this == Floor)
