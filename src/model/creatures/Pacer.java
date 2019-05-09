@@ -1,9 +1,8 @@
 package model.creatures;
 
-import model.Creature;
 import model.Square;
 
-public class Pacer extends Creature{
+public class Pacer extends Square{
 
 	public Pacer(Square currentSquare) {
 		super(9, currentSquare);

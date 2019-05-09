@@ -1,8 +1,11 @@
 package model;
 
-public class Square {
+public abstract class Square {
 	private int id;
 	private boolean apple, dig, alive;
+	private Square currentSquare;
+	
+	public abstract void move();
 	
 	public Square(int id) {
 		this.id = id;
@@ -11,16 +14,31 @@ public class Square {
 		this.alive = false;
 	}
 	
-	public Square(int id, boolean alive) {
-		this(id);
-		this.alive = alive;
+	public Square (int id, Square currentSquare) {
+		if(id > 6)
+			this.alive = true;
+		else
+			this.alive = false;
+		this.id = id;
+		this.currentSquare = currentSquare;
 	}
 	
 	public boolean isAlive() {
 		return alive;
 	}
-
 	
+	public int getId() {
+		return this.id;
+	}
+
+	public boolean getApple() {
+		return this.apple;
+	}
+	
+	public boolean getDig() {
+		return this.dig;
+	}
+
 	public void addApple() {
 		if(id == 1)
 			apple = true;
@@ -29,10 +47,6 @@ public class Square {
 	public void removeApple() {
 		if(id == 1)
 			apple = false;
-	}
-	
-	public boolean getApple() {
-		return this.apple;
 	}
 	
 	public void addDig() {
@@ -45,8 +59,12 @@ public class Square {
 			dig = false;
 	}
 	
-	public boolean getDig() {
-		return this.dig;
+	public Square getCurrentSquare() {
+		return this.currentSquare;
+	}
+	
+	public boolean getAlive() {
+		return this.alive;
 	}
 
 }
