@@ -7,9 +7,4 @@ public class Floor extends Square {
 		super(1);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -7,9 +7,5 @@ public class Brick extends Square {
 		super(2);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

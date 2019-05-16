@@ -10,7 +10,7 @@ public class UserInterface {
 		this.game = game;
 	}
 	
-	public void showMap() {
+	public void showBoard() {
 		Square[][] board = game.getBoard();
 		
 		System.out.println(" ====================== MAZE RUNNER ====================== ");

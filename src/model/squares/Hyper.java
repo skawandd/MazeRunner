@@ -7,9 +7,4 @@ public class Hyper extends Square {
 		super(3);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

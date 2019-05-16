@@ -2,7 +2,7 @@ package model.creatures;
 
 import model.Square;
 
-public class Pacer extends Square{
+public class Pacer extends Monster{
 
 	public Pacer(Square currentSquare) {
 		super(9, currentSquare);
@@ -14,4 +14,5 @@ public class Pacer extends Square{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

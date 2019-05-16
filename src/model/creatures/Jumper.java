@@ -2,7 +2,7 @@ package model.creatures;
 
 import model.Square;
 
-public class Jumper extends Square {
+public class Jumper extends Monster {
 	public Jumper(Square currentSquare) {
 		super(8, currentSquare);
 		// TODO Auto-generated constructor stub
@@ -13,4 +13,6 @@ public class Jumper extends Square {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

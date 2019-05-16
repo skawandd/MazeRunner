@@ -7,9 +7,4 @@ public class Ladder extends Square {
 		super(5);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

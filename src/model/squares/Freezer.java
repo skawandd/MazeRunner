@@ -7,9 +7,4 @@ public class Freezer extends Square {
 		super(4);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

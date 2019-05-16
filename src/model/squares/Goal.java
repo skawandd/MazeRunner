@@ -7,9 +7,4 @@ public class Goal extends Square {
 		super(6);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }

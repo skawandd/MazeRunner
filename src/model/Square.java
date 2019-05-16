@@ -4,9 +4,7 @@ public abstract class Square {
 	private int id;
 	private boolean apple, dig, alive;
 	private Square currentSquare;
-	
-	public abstract void move();
-	
+		
 	public Square(int id) {
 		this.id = id;
 		this.apple = false;
@@ -60,11 +58,47 @@ public abstract class Square {
 	}
 	
 	public Square getCurrentSquare() {
-		return this.currentSquare;
+		if(id > 6) {
+			return this.currentSquare;
+		}
+		return this;
 	}
 	
 	public boolean getAlive() {
 		return this.alive;
 	}
+
+	public boolean isJumper() {
+		if(id == 8)
+			return true;
+		return false;
+	}
+	
+	public boolean isPacer() {
+		if(id == 9)
+			return true;
+		return false;
+	}
+	
+	public boolean isRover() {
+		if(id == 10)
+			return true;
+		return false;
+	}
+	
+	public boolean isMonster() {
+		if(isJumper() || isPacer() || isRover())
+			return true;
+		return false;
+	}
+	
+	
+	public boolean isFree() {
+		if(id != 2)
+			return true;
+		return false;
+	}
+	
+	
 
 }

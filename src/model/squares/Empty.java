@@ -8,9 +8,4 @@ public class Empty extends Square {
 		super(0);
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 }
