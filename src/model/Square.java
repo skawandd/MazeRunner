@@ -3,7 +3,6 @@ package model;
 public abstract class Square {
 	private int id;
 	private boolean apple, dig, alive;
-	private Square currentSquare;
 		
 	public Square(int id) {
 		this.id = id;
@@ -18,7 +17,6 @@ public abstract class Square {
 		else
 			this.alive = false;
 		this.id = id;
-		this.currentSquare = currentSquare;
 	}
 	
 	public boolean isAlive() {
@@ -57,10 +55,7 @@ public abstract class Square {
 			dig = false;
 	}
 	
-	public Square getCurrentSquare() {
-		if(id > 6) {
-			return this.currentSquare;
-		}
+	public Square getSquare() {
 		return this;
 	}
 	

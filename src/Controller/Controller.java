@@ -45,7 +45,7 @@ public class Controller {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getCurrentSquare();
+		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y - 1][x].isFree()) {
 			board[y - 1][x] = new Human(board[y - 1][x]);
@@ -62,7 +62,7 @@ public class Controller {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getCurrentSquare();
+		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y + 1][x].isFree()) {
 			board[y + 1][x] = new Human(board[y + 1][x]);
@@ -79,7 +79,7 @@ public class Controller {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getCurrentSquare();
+		Square currentSquare = board[y][x].getSquare();
 		if (board[y][x + 1].isFree()) {
 			board[y][x + 1] = new Human(board[y][x + 1]);
 			board[y][x] = currentSquare;
@@ -96,7 +96,7 @@ public class Controller {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getCurrentSquare();
+		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y][x - 1].isFree()) {
 			board[y][x - 1] = new Human(board[y][x - 1]);
