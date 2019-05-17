@@ -7,8 +7,8 @@ public abstract class Monster extends Creature{
 
 	public abstract void move();
 	
-	public Monster(int id, Square currentSquare) {
-		super(id, currentSquare);
+	public Monster(int id, int y, int x, Square currentSquare) {
+		super(id, y, x, currentSquare);
 		// TODO Auto-generated constructor stub
 	}
 

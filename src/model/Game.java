@@ -45,7 +45,7 @@ public class Game {
 					board[y][x] = new Brick();
 			}
 		}
-		board[1][2] = new Human(board[1][2]);
+		board[1][2] = new Human(1, 2, board[1][2]);
 		board[3][2] = new Brick();
 		board[4][2] = new Brick();
 		board[5][2] = new Brick();
@@ -54,9 +54,7 @@ public class Game {
 		board[1][1] = new Ladder();
 		board[8][28] = new Goal();
 		
-		board[3][26] = new Rover(board[3][26]);
-		board[4][26] = new Pacer(board[4][26]);
-		board[5][26] = new Jumper(board[5][26]);
+		
 		
 		return board;
 	}
@@ -102,5 +100,6 @@ public class Game {
 	public int getPower() {
 		return this.power;
 	}
+	
 
 }

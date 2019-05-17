@@ -4,8 +4,8 @@ import model.Square;
 
 public class Pacer extends Monster{
 
-	public Pacer(Square currentSquare) {
-		super(9, currentSquare);
+	public Pacer(int y, int x, Square currentSquare) {
+		super(9, y, x, currentSquare);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -52,7 +52,7 @@ public class Controller {
 		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y - 1][x].isFree()) {
-			board[y - 1][x] = new Human(board[y - 1][x]);
+			board[y - 1][x] = new Human(y-1, x, board[y - 1][x]);
 			board[y][x] = currentSquare;
 			game.setHumanY(y - 1);
 			if(game.getBoard()[y - 1][x].getApple()) {
@@ -69,7 +69,7 @@ public class Controller {
 		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y + 1][x].isFree()) {
-			board[y + 1][x] = new Human(board[y + 1][x]);
+			board[y + 1][x] = new Human(y+1, x, board[y + 1][x]);
 			board[y][x] = currentSquare;
 			game.setHumanY(y+1);
 			if(game.getBoard()[y + 1][x].getApple()) {
@@ -85,7 +85,7 @@ public class Controller {
 		int y = game.getHumanY();
 		Square currentSquare = board[y][x].getSquare();
 		if (board[y][x + 1].isFree()) {
-			board[y][x + 1] = new Human(board[y][x + 1]);
+			board[y][x + 1] = new Human(y, x+1, board[y][x + 1]);
 			board[y][x] = currentSquare;
 			game.setHumanX(x+1);
 			if(game.getBoard()[y][x + 1].getApple()) {
@@ -103,7 +103,7 @@ public class Controller {
 		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y][x - 1].isFree()) {
-			board[y][x - 1] = new Human(board[y][x - 1]);
+			board[y][x - 1] = new Human(y, x-1, board[y][x - 1]);
 			board[y][x] = currentSquare;
 			game.setHumanX(x- 1);
 			if(game.getBoard()[y][x - 1].getApple()) {
@@ -126,7 +126,14 @@ public class Controller {
 	}
 
 	public void dig_se() {
-
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+		
+		if(game.getPower() > 0 && game.getBoard()[y+1][x+1].isBrick() 
+			&& game.getBoard()[y][x+1].isFree() && !game.getBoard()[y+1][x+1].isDig()) {
+			game.getBoard()[y+1][x+1].addDig();
+			game.powerDown();
+		}
 	}
 
 	public void setGame(Game game) {
