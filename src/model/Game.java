@@ -79,6 +79,10 @@ public class Game {
 		board[13][13]= new Ladder();
 		board[14][18]= new Ladder();
 		board[15][18]= new Ladder();
+		board[5][8]= new Ladder();
+		board[6][8]= new Ladder();
+		board[7][8]= new Ladder();
+		
 		
 		// Goal 
 		
