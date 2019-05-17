@@ -89,11 +89,24 @@ public abstract class Square {
 	
 	
 	public boolean isFree() {
-		if(id != 2)
+		if((!isBrick() || isDig()) && !isCreature())
 			return true;
 		return false;
 	}
 	
+	public boolean isBrick() {
+		if(id == 2)
+			return true;
+		return false;
+	}
 	
+	public boolean isCreature() {
+		if(isMonster() || id == 7)
+			return true;
+		return false;
+	}
 
+	public boolean isDig() {
+		return this.dig;
+	}
 }

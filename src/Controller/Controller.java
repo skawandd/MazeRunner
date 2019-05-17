@@ -37,6 +37,10 @@ public class Controller {
 			dig_sw();
 		else if(c == 'f' || c == 'F')
 			dig_se();
+		else if(c == 'n' || c == 'N') //FIXME Next level
+			System.exit(0);
+		else if(c == 'q' || c == 'Q')
+			System.exit(0);
 		else 
 			getKeyboard();
 	}
@@ -110,7 +114,15 @@ public class Controller {
 	}
 
 	public void dig_sw() {
-
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+		
+		if(game.getPower() > 0 && game.getBoard()[y+1][x-1].isBrick() 
+			&& game.getBoard()[y][x-1].isFree() && !game.getBoard()[y+1][x-1].isDig()) {
+			game.getBoard()[y+1][x-1].addDig();
+			game.powerDown();
+		}
+		
 	}
 
 	public void dig_se() {

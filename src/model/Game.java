@@ -22,7 +22,7 @@ public class Game {
 		this.loose = false;
 		this.setHumanX(2);
 		this.setHumanY(1);
-		this.power = 0;
+		this.power = 2;
 	}
 
 	public int start() {
@@ -97,6 +97,10 @@ public class Game {
 	public void powerDown() {
 		if(power > 0)
 			--power;
+	}
+	
+	public int getPower() {
+		return this.power;
 	}
 
 }
