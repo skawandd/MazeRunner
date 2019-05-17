@@ -18,10 +18,10 @@ public class Game {
 	private int humanX, humanY, power;
 
 	public Game() {
-		this.board = createMap(10, 30);
+		this.board = createMap(17, 20);
 		this.loose = false;
-		this.setHumanX(2);
-		this.setHumanY(1);
+		this.setHumanX(1);
+		this.setHumanY(15);
 		this.power = 2;
 	}
 
@@ -45,17 +45,98 @@ public class Game {
 					board[y][x] = new Brick();
 			}
 		}
-		board[1][2] = new Human(1, 2, board[1][2]);
-		board[3][2] = new Brick();
-		board[4][2] = new Brick();
-		board[5][2] = new Brick();
-		board[6][2] = new Brick();
-
-		board[1][1] = new Ladder();
-		board[8][28] = new Goal();
+		// Fair les apple 
 		
+		// Human 
+		board[15][1] = new Human(15, 1, board[15][1]);
 		
+	
+		// Ladder 
+		board[3][4]= new Ladder();
+		board[4][4]= new Ladder();
+		board[5][4]= new Ladder();
+		board[6][4]= new Ladder();
+		board[7][4]= new Ladder();
+		board[5][7]= new Ladder();
+		board[6][7]= new Ladder();
+		board[7][7]= new Ladder();
+		board[5][17]= new Ladder();
+		board[6][17]= new Ladder();
+		board[7][17]= new Ladder();
+		board[8][2]= new Ladder();
+		board[9][2]= new Ladder();
+		board[10][2]= new Ladder();
+		board[11][6]= new Ladder();
+		board[12][6]= new Ladder();
+		board[13][6]= new Ladder();
+		board[14][3]= new Ladder();
+		board[15][3]= new Ladder();
+		board[8][13]= new Ladder();
+		board[9][13]= new Ladder();
+		board[10][13]= new Ladder();
+		board[11][13]= new Ladder();
+		board[12][13]= new Ladder();
+		board[13][13]= new Ladder();
+		board[14][18]= new Ladder();
+		board[15][18]= new Ladder();
 		
+		// Goal 
+		
+		board[2][8]= new Goal();
+		
+		// Brick 
+		
+		board[3][1]= new Brick();
+		board[3][2]= new Brick();
+		board[3][3]= new Brick();
+		board[3][5]= new Brick();
+		board[3][6]= new Brick();
+		board[3][7]= new Brick();
+		board[3][8]= new Brick();
+		board[5][7]= new Brick();
+		board[5][11]= new Brick();
+		board[5][12]= new Brick();
+		board[5][13]= new Brick();
+		board[5][14]= new Brick();
+		board[5][15]= new Brick();
+		board[5][16]= new Brick();
+		board[5][18]= new Brick();
+		board[6][7]= new Brick();
+		board[7][7]= new Brick();
+		board[8][1]= new Brick();
+		board[8][3]= new Brick();
+		board[8][4]= new Brick();
+		board[8][7]= new Brick();
+		board[8][8]= new Brick();
+		board[8][9]= new Brick();
+		board[8][10]= new Brick();
+		board[8][11]= new Brick();
+		board[8][12]= new Brick();
+		board[8][14]= new Brick();
+		board[8][15]= new Brick();
+		board[8][16]= new Brick();
+		board[8][17]= new Brick();
+		board[8][18]= new Brick();
+		board[11][1]= new Brick();
+		board[11][2]= new Brick();
+		board[11][3]= new Brick();
+		board[11][4]= new Brick();
+		board[11][5]= new Brick();
+		board[11][7]= new Brick();
+		board[11][8]= new Brick();
+		board[11][9]= new Brick();
+		board[11][10]= new Brick();
+		board[11][11]= new Brick();
+		board[11][12]= new Brick();
+		board[14][4]= new Brick();
+		board[14][5]= new Brick();
+		board[14][6]= new Brick();
+		board[14][13]= new Brick();
+		board[14][14]= new Brick();
+		board[14][15]= new Brick();
+		board[14][16]= new Brick();
+		board[14][17]= new Brick();
+				
 		return board;
 	}
 	

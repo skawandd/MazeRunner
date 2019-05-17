@@ -38,11 +38,11 @@ public class UserInterface {
 		case 2:
 			return "#";
 		case 3:
-			return "H";
+			return "Y";
 		case 4:
 			return "F";
 		case 5:
-			return "L";
+			return"H";
 		case 6:
 			return "G";
 		case 7:
