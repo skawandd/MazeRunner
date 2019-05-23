@@ -29,6 +29,7 @@ public class Game {
 		while(!loose) {
 			new UserInterface(this).showBoard();
 			new Controller(this).getKeyboard();
+			//readMap();
 			
 		}
 		System.out.println("GG");
@@ -50,7 +51,6 @@ public class Game {
 		// Human 
 		board[15][1] = new Human(15, 1, board[15][1]);
 		
-	
 		// Ladder 
 		board[3][4]= new Ladder();
 		board[4][4]= new Ladder();
@@ -147,8 +147,10 @@ public class Game {
 	public void readMap() {
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
-				if(board[y][x].isMonster())
-					((Monster)board[y][x]).move();
+			//	if(board[y][x].isMonster())
+				//	((Monster)board[y][x]).move();
+				if(board[y][x].isCreature())
+					applyGravity((Creature)board[y][x]);
 			}
 		}
 	}
@@ -186,5 +188,20 @@ public class Game {
 		return this.power;
 	}
 	
+	public void applyGravity(Creature c) {
+		
+		while(!board[c.y+1][c.x].isSupport() && !c.getSquare().isLadder() && c.y + 2 < board.length) {
+			board[c.getY()][c.getX()] = c.getSquare();
+			c.setCurrentSquare(board[c.getY() + 1][c.getX()].getSquare());
+			c.setY(c.getY() + 1);
+			board[c.getY()][c.getX()] = c;
+			
+			if(board[c.getY()][c.getX()].getId() == 7) {
+				humanX = c.getX();
+				humanY = c.getY();
+			}
+			
+		}
+	}
 
 }

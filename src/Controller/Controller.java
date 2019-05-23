@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.Scanner;
 
+import model.Creature;
 import model.Game;
 import model.Square;
 import model.creatures.Human;
@@ -21,8 +22,12 @@ public class Controller {
 		
 		System.out.println(" I.Up	  K.Down    S.Dig-SW");
 		System.out.println(" J.Left	  L.Right   F.Dig-SE");
-
-		c = sc.nextLine().charAt(0);
+		
+		try {
+			c = sc.nextLine().charAt(0);
+		}catch (Exception e) {
+			getKeyboard();
+		}
 	//	sc.close();
 
 		if(c == 'i' || c == 'I')
@@ -60,6 +65,7 @@ public class Controller {
 				game.getBoard()[y - 1][x].removeApple();
 			}
 		}
+		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
 	}
 
 	public void move_down() {
@@ -77,6 +83,7 @@ public class Controller {
 				game.getBoard()[y - 1][x].removeApple();
 			}
 		}
+		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
 	}
 
 	public void move_right() {
@@ -84,6 +91,7 @@ public class Controller {
 		int x = game.getHumanX();
 		int y = game.getHumanY();
 		Square currentSquare = board[y][x].getSquare();
+		
 		if (board[y][x + 1].isFree()) {
 			board[y][x + 1] = new Human(y, x+1, board[y][x + 1]);
 			board[y][x] = currentSquare;
@@ -93,7 +101,7 @@ public class Controller {
 				game.getBoard()[y][x + 1].removeApple();
 			}
 		}
-
+		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
 	}
 
 	public void move_left() {
@@ -111,6 +119,7 @@ public class Controller {
 				game.getBoard()[y][x - 1].removeApple();
 			}
 		}
+		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
 	}
 
 	public void dig_sw() {

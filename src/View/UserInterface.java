@@ -13,7 +13,7 @@ public class UserInterface {
 	public void showBoard() {
 		Square[][] board = game.getBoard();
 		
-		System.out.println(" ====================== MAZE RUNNER ====================== ");
+		System.out.println(" ============ MAZE RUNNER ============ ");
 		
 		for(int y = 0; y < board.length; ++y) {
 			for(int x = 0; x < board[0].length; ++x) {

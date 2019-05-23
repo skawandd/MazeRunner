@@ -13,7 +13,12 @@ public class Creature extends Square{
 		return this.currentSquare;
 	}
 	
-	public void isFalling() {
-	
+	public void setCurrentSquare(Square currentSquare) {
+		this.currentSquare = currentSquare;
 	}
+	
+	public void makeFall() {
+		++y;
+	}
+
 }

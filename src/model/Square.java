@@ -1,7 +1,7 @@
 package model;
 
 public abstract class Square {
-	private int id, x, y;
+	protected int id, x, y;
 	private boolean apple, dig, alive;
 		
 	public Square(int id) {
@@ -96,6 +96,12 @@ public abstract class Square {
 		return false;
 	}
 	
+	public boolean isLadder() {
+		if(id == 5)
+			return true;
+		return false;
+	}
+	
 	public boolean isBrick() {
 		if(id == 2)
 			return true;
@@ -118,6 +124,20 @@ public abstract class Square {
 	
 	public int getY() {
 		return y;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public boolean isSupport() {
+		if(isBrick() || isLadder())
+			return true;
+		return false;
 	}
 	
 }
