@@ -1,24 +1,29 @@
 package model;
 
+import java.util.Random;
+
 import Controller.Controller;
 import View.UserInterface;
 import model.creatures.Human;
 import model.squares.Brick;
 import model.squares.Floor;
+import model.squares.Freezer;
 import model.squares.Goal;
+import model.squares.Hyper;
 import model.squares.Ladder;
 
 public class Game {
 	protected Square[][] board;
 	private boolean loose;
-	private int humanX, humanY, power;
+	private int humanX, humanY, power, moves;
 
 	public Game() {
-		this.board = createMap(17, 20);
-		this.loose = false;
-		this.setHumanX(1);
-		this.setHumanY(15);
-		this.power = 2;
+		board = createMap(17, 20);
+		loose = false;
+		setHumanX(1);
+		setHumanY(15);
+		power = 2;
+		generateApple();
 	}
 
 	public int start() {
@@ -137,6 +142,9 @@ public class Game {
 		board[14][15]= new Brick();
 		board[14][16]= new Brick();
 		board[14][17]= new Brick();
+		
+		board[4][18] = new Hyper();
+		board[15][10] = new Freezer();
 				
 		return board;
 	}
@@ -169,6 +177,14 @@ public class Game {
 		this.humanX = humanX;
 	}
 	
+	public void incrtMoves() {
+		++moves;
+	}
+	
+	public int getMoves() {
+		return moves;
+	}
+	
 	public void powerUp() {
 		++power;
 	}
@@ -180,6 +196,22 @@ public class Game {
 	
 	public int getPower() {
 		return this.power;
+	}
+	
+	public void generateApple() {
+		Random r = new Random();
+		int x, y;
+		int i = 0;
+		
+		while(i < 3) {
+			x = r.nextInt(board[0].length - 1);
+			y = r.nextInt(board.length - 1);
+			
+			if(board[y][x].isFree() && !board[y][x].isLadder() && board[y+1][x].isSupport()) {
+				board[y][x].addApple();
+				System.out.println(++i);
+			}
+		}
 	}
 	
 	public void applyGravity(Creature c) {

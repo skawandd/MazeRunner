@@ -95,7 +95,7 @@ public abstract class Square {
 	
 	
 	public boolean isFree() {
-		if((!isBrick() || isDig()) && !isCreature())
+		if(!isBrick() || isDig())
 			return true;
 		return false;
 	}
@@ -108,12 +108,6 @@ public abstract class Square {
 	
 	public boolean isBrick() {
 		if(id == 2)
-			return true;
-		return false;
-	}
-	
-	public boolean isCreature() {
-		if(isMonster() || id == 7)
 			return true;
 		return false;
 	}
@@ -139,7 +133,7 @@ public abstract class Square {
 	}
 	
 	public boolean isSupport() {
-		if(isBrick() || isLadder())
+		if((isBrick() && !isDig())|| isLadder())
 			return true;
 		return false;
 	}
@@ -158,6 +152,12 @@ public abstract class Square {
 	
 	public int getListSize() {
 		return list.size();
+	}
+	
+	public boolean isCreature() {
+		if(list.size() == 0)
+			return true;
+		return false;
 	}
 	
 	public Creature getHuman() {

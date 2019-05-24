@@ -20,16 +20,16 @@ public class Controller {
 		char c = ' ';
 
 		
-		System.out.println(" I.Up	  K.Down    S.Dig-SW");
-		System.out.println(" J.Left	  L.Right   F.Dig-SE");
+		System.out.println(" I.Up	  K.Down    S.Dig-SW | Power: " + game.getPower());
+		System.out.println(" J.Left	  L.Right   F.Dig-SE | Moves: " + game.getMoves());
 		
 		try {
 			c = sc.nextLine().charAt(0);
 		}catch (Exception e) {
 			getKeyboard();
 		}
-	//	sc.close();
-
+		//	sc.close();
+		game.incrtMoves();
 		if(c == 'i' || c == 'I')
 			move_up();
 		else if(c == 'k' || c == 'K')
