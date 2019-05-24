@@ -2,10 +2,8 @@ package Controller;
 
 import java.util.Scanner;
 
-import model.Creature;
 import model.Game;
 import model.Square;
-import model.creatures.Human;
 
 public class Controller {
 	Game game;
@@ -28,7 +26,7 @@ public class Controller {
 		}catch (Exception e) {
 			getKeyboard();
 		}
-		//	sc.close();
+	//	sc.close(); //FIXME
 		game.incrtMoves();
 		if(c == 'i' || c == 'I')
 			move_up();
@@ -55,18 +53,7 @@ public class Controller {
 		int x = game.getHumanX();
 		int y = game.getHumanY();
 
-		if (board[y - 1][x].isFree()) {
-		//	board[y - 1][x] = new Human(y-1, x, board[y - 1][x]);
-			board[y - 1][x].addCreature(new Human(y-1, x));
-			board[y][x].removeCreature(board[y][x].getHuman());
-			game.setHumanY(y - 1);
-			if(game.getBoard()[y - 1][x].getApple()) {
-				game.powerUp();
-				game.getBoard()[y - 1][x].removeApple();
-			}
-		}
-		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
-		game.applyGravity(c);
+		game.move(board[y][x].getHuman(), y-1, x);
 	}
 
 	public void move_down() {
@@ -74,18 +61,7 @@ public class Controller {
 		int x = game.getHumanX();
 		int y = game.getHumanY();
 
-		if (board[y + 1][x].isFree()) {
-		//	board[y + 1][x] = new Human(y+1, x, board[y + 1][x]);
-			board[y + 1][x].addCreature(new Human(y+1, x));
-			board[y][x].removeCreature(board[y][x].getHuman());
-			game.setHumanY(y+1);
-			if(game.getBoard()[y + 1][x].getApple()) {
-				game.powerUp();
-				game.getBoard()[y - 1][x].removeApple();
-			}
-		}
-		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
-		game.applyGravity(c);
+		game.move(board[y][x].getHuman(), y+1, x);
 	}
 
 	public void move_right() {
@@ -93,18 +69,7 @@ public class Controller {
 		int x = game.getHumanX();
 		int y = game.getHumanY();
 		
-		if (board[y][x + 1].isFree()) {
-		//	board[y][x + 1] = new Human(y, x+1, board[y][x + 1]);
-			board[y][x + 1].addCreature(new Human(y, x+1));
-			board[y][x].removeCreature(board[y][x].getHuman());
-			game.setHumanX(x+1);
-			if(game.getBoard()[y][x + 1].getApple()) {
-				game.powerUp();
-				game.getBoard()[y][x + 1].removeApple();
-			}
-		}
-		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
-		game.applyGravity(c);
+		game.move(board[y][x].getHuman(), y, x+1);
 	}
 
 	public void move_left() {
@@ -112,18 +77,7 @@ public class Controller {
 		int x = game.getHumanX();
 		int y = game.getHumanY();
 
-		if (board[y][x - 1].isFree()) {
-		//	board[y][x - 1] = new Human(y, x-1, board[y][x - 1]);
-			board[y][x - 1].addCreature(new Human(y, x-1));
-			board[y][x].removeCreature(board[y][x].getHuman());
-			game.setHumanX(x- 1);
-			if(game.getBoard()[y][x - 1].getApple()) {
-				game.powerUp();
-				game.getBoard()[y][x - 1].removeApple();
-			}
-		}
-		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
-		game.applyGravity(c);
+		game.move(board[y][x].getHuman(), y, x-1);
 	}
 
 	public void dig_sw() {

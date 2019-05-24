@@ -132,6 +132,12 @@ public abstract class Square {
 		this.y = y;
 	}
 	
+	public boolean isHyper() {
+		if(id == 3)
+			return true;
+		return false;
+	}
+	
 	public boolean isSupport() {
 		if((isBrick() && !isDig())|| isLadder())
 			return true;
@@ -140,6 +146,18 @@ public abstract class Square {
 	
 	public Creature getCreature(int i) {
 		return list.get(i);
+	}
+	
+	public Creature getCreature(Creature c) {
+		System.out.println("getC");
+		for(int i = 0; i < list.size(); ++i) {
+			System.out.println("in");
+			if(list.get(i).getId() == c.getId()) {
+				System.out.println("GET");
+				return list.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public void addCreature(Creature c) {

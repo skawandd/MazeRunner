@@ -25,13 +25,12 @@ public class UserInterface {
 	}
 	
 	public String getSquareStyle(Square s) {
-		if(s.getApple())
+		if(s.getHuman() != null)
+			return "&";
+		else if(s.getApple())
 			return "*";
 		else if(s.getDig())
 			return "¤";
-		
-		if(s.getHuman() != null)
-			return "&";
 		
 		switch (s.getId()) {
 		case 0:
