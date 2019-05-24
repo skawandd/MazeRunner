@@ -5,9 +5,15 @@ import model.Square;
 
 public class Human extends Creature{
 	
-	public Human(int y, int x, Square currentSquare) {
-		super(7, y, x, currentSquare);
+	public Human(int y, int x) {
+		super(7, y, x);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

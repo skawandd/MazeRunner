@@ -1,24 +1,34 @@
 package model;
 
-public class Creature extends Square{
-	private Square currentSquare;
+public abstract class Creature {
+	private int id;
+	private int y, x;
 	
-	public Creature(int id, int y, int x, Square currentSquare) {
-		super(id, y, x);
-		this.currentSquare = currentSquare;
+	public Creature(int id, int y, int x) { 
+		this.id = id;
+		this.x = x;
+		this.y = y;
 	}
 	
-	@Override
-	public Square getSquare() {
-		return this.currentSquare;
+	public abstract void move();
+	
+	public int getId() {
+		return id;
 	}
 	
-	public void setCurrentSquare(Square currentSquare) {
-		this.currentSquare = currentSquare;
+	public int getX() {
+		return x;
 	}
 	
-	public void makeFall() {
-		++y;
+	public void setX(int x) {
+		this.x = x;
 	}
-
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
 }

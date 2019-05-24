@@ -3,10 +3,6 @@ package model;
 import Controller.Controller;
 import View.UserInterface;
 import model.creatures.Human;
-import model.creatures.Jumper;
-import model.creatures.Monster;
-import model.creatures.Pacer;
-import model.creatures.Rover;
 import model.squares.Brick;
 import model.squares.Floor;
 import model.squares.Goal;
@@ -49,8 +45,9 @@ public class Game {
 		// Fair les apple 
 		
 		// Human 
-		board[15][1] = new Human(15, 1, board[15][1]);
-		
+	//	board[15][1] = new Human(15, 1, board[15][1]);
+		board[15][1].addCreature(new Human(15, 1));
+				
 		// Ladder 
 		board[3][4]= new Ladder();
 		board[4][4]= new Ladder();
@@ -147,10 +144,7 @@ public class Game {
 	public void readMap() {
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
-			//	if(board[y][x].isMonster())
-				//	((Monster)board[y][x]).move();
-				if(board[y][x].isCreature())
-					applyGravity((Creature)board[y][x]);
+			
 			}
 		}
 	}
@@ -190,18 +184,18 @@ public class Game {
 	
 	public void applyGravity(Creature c) {
 		
-		while(!board[c.y+1][c.x].isSupport() && !c.getSquare().isLadder() && c.y + 2 < board.length) {
-			board[c.getY()][c.getX()] = c.getSquare();
-			c.setCurrentSquare(board[c.getY() + 1][c.getX()].getSquare());
+		while(!board[c.getY()+1][c.getX()].isSupport() && !board[c.getY()][c.getX()].isLadder() && c.getY() + 2 < board.length) {
+			board[c.getY()][c.getX()].removeCreature(c);
 			c.setY(c.getY() + 1);
-			board[c.getY()][c.getX()] = c;
+			board[c.getY()][c.getX()].addCreature(c);
 			
-			if(board[c.getY()][c.getX()].getId() == 7) {
+			if(board[c.getY()][c.getX()].getHuman() != null) {
 				humanX = c.getX();
 				humanY = c.getY();
 			}
 			
 		}
+		
 	}
 
 }

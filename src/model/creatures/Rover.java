@@ -1,15 +1,14 @@
 package model.creatures;
 
-import model.Square;
+import model.Creature;
 
-public class Rover extends Monster{
+public class Rover extends Creature{
 
-	public Rover(int y, int x, Square currentSquare) {
-		super(10, y, x, currentSquare);
+	public Rover(int y, int x) {
+		super(10, y, x);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void move() {
 		// TODO Auto-generated method stub
 		

@@ -54,72 +54,76 @@ public class Controller {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y - 1][x].isFree()) {
-			board[y - 1][x] = new Human(y-1, x, board[y - 1][x]);
-			board[y][x] = currentSquare;
+		//	board[y - 1][x] = new Human(y-1, x, board[y - 1][x]);
+			board[y - 1][x].addCreature(new Human(y-1, x));
+			board[y][x].removeCreature(board[y][x].getHuman());
 			game.setHumanY(y - 1);
 			if(game.getBoard()[y - 1][x].getApple()) {
 				game.powerUp();
 				game.getBoard()[y - 1][x].removeApple();
 			}
 		}
-		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
+		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
+		game.applyGravity(c);
 	}
 
 	public void move_down() {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y + 1][x].isFree()) {
-			board[y + 1][x] = new Human(y+1, x, board[y + 1][x]);
-			board[y][x] = currentSquare;
+		//	board[y + 1][x] = new Human(y+1, x, board[y + 1][x]);
+			board[y + 1][x].addCreature(new Human(y+1, x));
+			board[y][x].removeCreature(board[y][x].getHuman());
 			game.setHumanY(y+1);
 			if(game.getBoard()[y + 1][x].getApple()) {
 				game.powerUp();
 				game.getBoard()[y - 1][x].removeApple();
 			}
 		}
-		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
+		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
+		game.applyGravity(c);
 	}
 
 	public void move_right() {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getSquare();
 		
 		if (board[y][x + 1].isFree()) {
-			board[y][x + 1] = new Human(y, x+1, board[y][x + 1]);
-			board[y][x] = currentSquare;
+		//	board[y][x + 1] = new Human(y, x+1, board[y][x + 1]);
+			board[y][x + 1].addCreature(new Human(y, x+1));
+			board[y][x].removeCreature(board[y][x].getHuman());
 			game.setHumanX(x+1);
 			if(game.getBoard()[y][x + 1].getApple()) {
 				game.powerUp();
 				game.getBoard()[y][x + 1].removeApple();
 			}
 		}
-		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
+		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
+		game.applyGravity(c);
 	}
 
 	public void move_left() {
 		Square[][] board = game.getBoard();
 		int x = game.getHumanX();
 		int y = game.getHumanY();
-		Square currentSquare = board[y][x].getSquare();
 
 		if (board[y][x - 1].isFree()) {
-			board[y][x - 1] = new Human(y, x-1, board[y][x - 1]);
-			board[y][x] = currentSquare;
+		//	board[y][x - 1] = new Human(y, x-1, board[y][x - 1]);
+			board[y][x - 1].addCreature(new Human(y, x-1));
+			board[y][x].removeCreature(board[y][x].getHuman());
 			game.setHumanX(x- 1);
 			if(game.getBoard()[y][x - 1].getApple()) {
 				game.powerUp();
 				game.getBoard()[y][x - 1].removeApple();
 			}
 		}
-		game.applyGravity((Creature)board[game.getHumanY()][game.getHumanX()]);
+		Creature c = board[game.getHumanY()][game.getHumanX()].getHuman();
+		game.applyGravity(c);
 	}
 
 	public void dig_sw() {

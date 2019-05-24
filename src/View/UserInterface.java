@@ -30,6 +30,9 @@ public class UserInterface {
 		else if(s.getDig())
 			return "¤";
 		
+		if(s.getHuman() != null)
+			return "&";
+		
 		switch (s.getId()) {
 		case 0:
 			return "X";

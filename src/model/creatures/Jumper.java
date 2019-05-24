@@ -1,10 +1,12 @@
 package model.creatures;
 
+import model.Creature;
 import model.Square;
 
-public class Jumper extends Monster {
-	public Jumper(int y, int x, Square currentSquare) {
-		super(8, y, x, currentSquare);
+public class Jumper extends Creature {
+	
+	public Jumper(int y, int x) {
+		super(8, y, x);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -1,15 +1,15 @@
 package model.creatures;
 
+import model.Creature;
 import model.Square;
 
-public class Pacer extends Monster{
+public class Pacer extends Creature{
 
-	public Pacer(int y, int x, Square currentSquare) {
-		super(9, y, x, currentSquare);
+	public Pacer(int y, int x) {
+		super(9, y, x);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void move() {
 		// TODO Auto-generated method stub
 		

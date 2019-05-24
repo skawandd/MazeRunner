@@ -1,13 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+
 public abstract class Square {
 	protected int id, x, y;
 	private boolean apple, dig, alive;
+	public ArrayList<Creature> list;
 		
 	public Square(int id) {
 		this.id = id;
-		this.apple = false;
-		this.dig = false;
+		apple = false;
+		dig = false;
+		list = new ArrayList<Creature>();
 		
 		if(id > 6) {
 			this.alive = true;	
@@ -26,11 +30,11 @@ public abstract class Square {
 	}
 	
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public boolean getApple() {
-		return this.apple;
+		return apple;
 	}
 	
 	public boolean getDig() {
@@ -115,7 +119,7 @@ public abstract class Square {
 	}
 
 	public boolean isDig() {
-		return this.dig;
+		return dig;
 	}
 	
 	public int getX() {
@@ -140,4 +144,27 @@ public abstract class Square {
 		return false;
 	}
 	
+	public Creature getCreature(int i) {
+		return list.get(i);
+	}
+	
+	public void addCreature(Creature c) {
+		list.add(c);
+	}
+	
+	public void removeCreature(Creature c) {
+		list.remove(c);
+	}
+	
+	public int getListSize() {
+		return list.size();
+	}
+	
+	public Creature getHuman() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 7)
+				return list.get(i);
+		}
+		return null;
+	}
 }
