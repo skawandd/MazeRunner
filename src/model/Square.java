@@ -185,4 +185,8 @@ public abstract class Square {
 		}
 		return null;
 	}
+	
+	public int getHyperId() {
+		return -1;
+	}
 }

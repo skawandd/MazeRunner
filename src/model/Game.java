@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import Controller.Controller;
@@ -11,12 +12,12 @@ import model.squares.Freezer;
 import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
-import sun.misc.GC;
 
 public class Game {
 	protected Square[][] board;
 	private boolean loose;
 	private int humanX, humanY, power, moves;
+	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
 
 	public Game() {
 		board = createMap(17, 20);
@@ -40,6 +41,7 @@ public class Game {
 
 	public Square[][] createMap(int w, int h) {
 		Square[][] board = new Square[w][h];
+		
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
 				if (y > 0 && y < board.length - 1 && x > 0 && x < board[0].length - 1)
@@ -48,10 +50,8 @@ public class Game {
 					board[y][x] = new Brick();
 			}
 		}
-		// Fair les apple
 
 		// Human
-		// board[15][1] = new Human(15, 1, board[15][1]);
 		board[15][1].addCreature(new Human(15, 1));
 
 		// Ladder
@@ -143,8 +143,18 @@ public class Game {
 		board[14][16] = new Brick();
 		board[14][17] = new Brick();
 
-		board[4][18] = new Hyper();
+		board[15][5] = new Hyper(15, 5);
+		addHyper((Hyper)board[15][5]);
+		
+		board[7][1] = new Hyper(7, 1);
+		addHyper((Hyper)board[7][1]);
+		
+		board[4][18] = new Hyper(4, 18);
+		addHyper((Hyper)board[4][18]);
+		
 		board[15][10] = new Freezer();
+		
+		System.out.println("size: "+hyperList.size());
 
 		return board;
 	}
@@ -189,6 +199,31 @@ public class Game {
 	public int getMoves() {
 		return moves;
 	}
+	
+	public int getHyperSize() {
+		return hyperList.size();
+	}
+	
+	public Hyper getHyper(int id) {
+		for(int i = 0; i < hyperList.size(); ++i) {
+			if(hyperList.get(i).getHyperId() == id)
+				return hyperList.get(i);
+		}
+		return null;
+	}
+	
+	public Hyper getNextHyper(int id) {
+		if(id < hyperList.size()-1 && id >= 0) {
+			System.out.println(id + " L221"+getHyper(id+1) + getHyper(id+1).y +";"+getHyper(id+1).x);
+			return getHyper(id+1);
+		}
+		return getHyper(0);
+	}
+	
+	public void addHyper(Hyper h) {
+		h.setHyperId(hyperList.size());
+		hyperList.add(h);
+	}
 
 	public void powerUp() {
 		++power;
@@ -225,7 +260,6 @@ public class Game {
 			c.setY(toY);
 			c.setX(toX);
 			board[c.getY()][c.getX()].addCreature(c);
-			System.out.println("move");
 			
 			if (board[c.getY()][c.getX()].getHuman() != null)
 				refreshHuman(c.getY(), c.getX());
@@ -233,7 +267,7 @@ public class Game {
 		checkAll(board[c.getY()][c.getX()]);
 	}
 
-	public void hyperTeleport(Creature c) {
+	public void RandomTeleport(Creature c) {
 		Random r = new Random();
 		int x, y;
 		boolean flag = false;
@@ -243,7 +277,6 @@ public class Game {
 			y = r.nextInt(board.length - 1);
 
 			if (board[y][x].isFree() && !board[y][x].isLadder() && board[y + 1][x].isSupport()) {
-				System.out.println("TELEPORT");
 				move(c, y, x);
 				flag = true;
 			}
@@ -252,13 +285,27 @@ public class Game {
 		if (board[c.getY()][c.getX()].getHuman() != null)
 			refreshHuman(c.getY(), c.getX());
 	}
+	
+	public void hyperTeleport(Creature c) {
+		Hyper nextHyper;
+		if(board[c.getY()][c.getX()].isHyper()) {
+			nextHyper = getNextHyper(hyperList.indexOf((Hyper)board[c.getY()][c.getX()]));
+			if(!c.isTeleported()) {
+				c.setTeleported(true);
+				move(c, nextHyper.getY(), nextHyper.getX());
+			}
+		}	
+	}
+	
+	public void teleportStatus(Creature c) {
+		if(!board[c.getY()][c.getX()].isHyper())
+			c.setTeleported(false);
+	}
 
 	public void applyGravity(Creature c) {
-
 		while (!board[c.getY() + 1][c.getX()].isSupport() && !board[c.getY()][c.getX()].isLadder()
 				&& c.getY() + 2 < board.length)
 			move(c, c.getY()+1, c.getX());
-
 	}
 
 	public void checkAll(Square s) {
@@ -269,7 +316,9 @@ public class Game {
 		Creature c = s.getHuman();
 		if (s.isHyper())
 			hyperTeleport(c);
+		teleportStatus(c);
 		applyGravity(c);
+		
 	}
 
 }

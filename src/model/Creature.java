@@ -3,11 +3,13 @@ package model;
 public abstract class Creature {
 	private int id;
 	private int y, x;
+	private boolean teleported;
 	
 	public Creature(int id, int y, int x) { 
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		teleported = false;
 	}
 	
 	public abstract void move();
@@ -30,5 +32,13 @@ public abstract class Creature {
 	
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public boolean isTeleported() {
+		return teleported;
+	}
+	
+	public void setTeleported(boolean teleported) {
+		this.teleported = teleported;
 	}
 }
