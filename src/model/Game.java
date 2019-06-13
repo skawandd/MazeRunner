@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Controller.Controller;
-import View.UserInterface;
+import View.TextInterface;
+import controller.Controller;
 import model.creatures.Human;
 import model.squares.Brick;
 import model.squares.Floor;
@@ -30,7 +30,7 @@ public class Game {
 
 	public int start() {
 		while (!loose) {
-			new UserInterface(this).showBoard();
+			new TextInterface(this).showBoard();
 			new Controller(this).getKeyboard();
 			// readMap();
 
