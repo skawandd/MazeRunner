@@ -137,16 +137,20 @@ public class CSVElement {
                     	csvGrid[line][column] = new Goal();
                     	break;
 					case 7:
-						csvGrid[line][column]= new Human(line, column, csvGrid[column][line]); 
+						csvGrid[line][column]= new Floor();
+						csvGrid[line][column].addCreature(new Human(line, column));
 						break;
 					case 8:
-						csvGrid[line][column]= new Jumper(line, column, csvGrid[column][line]);
+						csvGrid[line][column]= new Floor();
+						csvGrid[line][column].addCreature(new Jumper(line, column));
 						break;
 					case 9:
-						csvGrid[line][column]= new Pacer(line, column, csvGrid[column][line]);
+						csvGrid[line][column]= new Floor();
+						csvGrid[line][column].addCreature(new Pacer(line, column));
 						break;
 					case 10:
-						csvGrid[line][column] = new Rover(line, column, csvGrid[column][line]);
+						csvGrid[line][column]= new Floor();
+						csvGrid[line][column].addCreature(new Rover(line, column));
 						break;
 					default:
 						break;
