@@ -3,7 +3,7 @@ package View;
 import model.Game;
 import model.Square;
 
-public class TextInterface implements Runnable{
+public class TextInterface {
 	private Game game;
 	
 	public TextInterface(Game game) {
@@ -60,12 +60,5 @@ public class TextInterface implements Runnable{
 		}
 
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }

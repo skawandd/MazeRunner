@@ -8,7 +8,8 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.start();
+		Thread thread1 = new Thread(game);
+		thread1.start();
 		Application.launch(GraphicInterface.class, args);
 	}
 	

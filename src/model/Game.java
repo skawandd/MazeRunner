@@ -13,7 +13,7 @@ import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
 
-public class Game {
+public class Game implements Runnable {
 	protected Square[][] board;
 	private boolean loose;
 	private int humanX, humanY, power, moves;
@@ -318,6 +318,12 @@ public class Game {
 			hyperTeleport(c);
 		teleportStatus(c);
 		applyGravity(c);
+		
+	}
+
+	@Override
+	public void run() {
+		start();
 		
 	}
 
