@@ -1,10 +1,12 @@
 package model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import View.TextInterface;
+import controller.CSVElement;
 import controller.Controller;
+import View.TextInterface;
 import model.creatures.Human;
 import model.squares.Brick;
 import model.squares.Floor;
@@ -19,8 +21,9 @@ public class Game implements Runnable {
 	private int humanX, humanY, power, moves;
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
 
-	public Game() {
+	public Game() throws FileNotFoundException {
 		board = createMap(17, 20);
+	//	this.board = loadMap();
 		loose = false;
 		setHumanX(1);
 		setHumanY(15);
@@ -37,6 +40,18 @@ public class Game implements Runnable {
 		}
 		System.out.println("GG");
 		return 0;
+	}
+
+	public Square[][] loadMap() throws FileNotFoundException {
+		CSVElement csvElement = new CSVElement(CSVElement.pick_CSVLevel()); 
+		board = csvElement.getCsvGrid(); 
+		for (int i=0;i<board.length;i++) {
+			for(int j = 0 ; j<board[0].length; j++) {
+				System.out.print(board[i][j].id);
+			}
+			System.out.println("\n");
+		}
+		return board; 
 	}
 
 	public Square[][] createMap(int w, int h) {
@@ -154,8 +169,6 @@ public class Game implements Runnable {
 		
 		board[15][10] = new Freezer();
 		
-		System.out.println("size: "+hyperList.size());
-
 		return board;
 	}
 
