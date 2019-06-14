@@ -21,12 +21,11 @@ public class Game implements Runnable {
 	private int humanX, humanY, power, moves;
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
 
-	public Game() throws FileNotFoundException {
-		board = createMap(17, 20);
-	//	this.board = loadMap();
+	public Game() {
+	//	board = createMap(17, 20); TODO default map
+		this.board = loadMap();
+		initElements();
 		loose = false;
-		setHumanX(1);
-		setHumanY(15);
 		power = 2;
 		generateApple();
 	}
@@ -42,16 +41,14 @@ public class Game implements Runnable {
 		return 0;
 	}
 
-	public Square[][] loadMap() throws FileNotFoundException {
-		CSVElement csvElement = new CSVElement(CSVElement.pick_CSVLevel()); 
-		board = csvElement.getCsvGrid(); 
-		for (int i=0;i<board.length;i++) {
-			for(int j = 0 ; j<board[0].length; j++) {
-				System.out.print(board[i][j].id);
-			}
-			System.out.println("\n");
+	public Square[][] loadMap() {
+		try {
+			CSVElement csvElement = new CSVElement(CSVElement.pick_CSVLevel());
+			board = csvElement.getCsvGrid(); 
+			return board; 
+		} catch (Exception e) {
+			return createMap(17, 20);
 		}
-		return board; 
 	}
 
 	public Square[][] createMap(int w, int h) {
@@ -159,14 +156,8 @@ public class Game implements Runnable {
 		board[14][17] = new Brick();
 
 		board[15][5] = new Hyper(15, 5);
-		addHyper((Hyper)board[15][5]);
-		
 		board[7][1] = new Hyper(7, 1);
-		addHyper((Hyper)board[7][1]);
-		
 		board[4][18] = new Hyper(4, 18);
-		addHyper((Hyper)board[4][18]);
-		
 		board[15][10] = new Freezer();
 		
 		return board;
@@ -320,6 +311,19 @@ public class Game implements Runnable {
 				&& c.getY() + 2 < board.length)
 			move(c, c.getY()+1, c.getX());
 	}
+	
+	public void initElements() {
+		for (int y = board.length-1; y > 0 ; --y) {
+			for (int x = board[0].length-1; x > 0; --x) {
+				if(board[y][x].isHyper())
+					addHyper((Hyper)board[y][x]);
+				if(board[y][x].getHuman() != null) {
+					setHumanY(y);
+					setHumanX(x);
+				}
+			}
+		}
+	}
 
 	public void checkAll(Square s) {
 		if (s.getApple()) {
@@ -331,13 +335,11 @@ public class Game implements Runnable {
 			hyperTeleport(c);
 		teleportStatus(c);
 		applyGravity(c);
-		
 	}
 
 	@Override
 	public void run() {
 		start();
-		
 	}
 
 }

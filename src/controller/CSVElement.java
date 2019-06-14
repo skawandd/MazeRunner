@@ -125,7 +125,7 @@ public class CSVElement {
                     	csvGrid[line][column] = new Brick();
                     	break;
                     case 3:
-                    	csvGrid[line][column]= new Hyper();
+                    	csvGrid[line][column]= new Hyper(line, column);
                     	break;
                     case 4:
                     	csvGrid[line][column] = new Freezer();
