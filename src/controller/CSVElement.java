@@ -38,8 +38,7 @@ public class CSVElement {
     private int nbColumn;
     Square[][] csvGrid;
     private File csv;
-    private final static String chooser_path = "./src/view/levels";
-//    private final static String chooser_path = "levels";
+    private final static String chooser_path = "./levels";
     
     /**
      * Ask the user to pick the level CSV file

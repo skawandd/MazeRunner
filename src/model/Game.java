@@ -1,12 +1,11 @@
 package model;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import View.TextInterface;
 import controller.CSVElement;
 import controller.Controller;
-import View.TextInterface;
 import model.creatures.Human;
 import model.squares.Brick;
 import model.squares.Floor;
