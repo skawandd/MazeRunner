@@ -2,12 +2,12 @@ package model;
 
 import java.io.FileNotFoundException;
 
+import View.GraphicInterface;
+
 public class MainClass {
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Game game = new Game();
-		game.start();
-		
+		GraphicInterface.launch(args);
 	}
 	
 }

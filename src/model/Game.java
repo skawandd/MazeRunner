@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
 
 import View.TextInterface;
@@ -14,12 +15,13 @@ import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
 
-public class Game implements Runnable {
+public class Game extends Observable implements Runnable {
 	protected Square[][] board;
 	private boolean loose;
 	private int humanX, humanY, power, moves;
+	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
-
+	
 	public Game() {
 	//	board = createMap(17, 20); TODO default map
 		this.board = loadMap();
@@ -34,7 +36,8 @@ public class Game implements Runnable {
 			new TextInterface(this).showBoard();
 			new Controller(this).getKeyboard();
 			// readMap();
-
+			//setChanged();
+			//notifyObservers(this);
 		}
 		System.out.println("GG");
 		return 0;
@@ -174,20 +177,36 @@ public class Game implements Runnable {
 		return this.board;
 	}
 
+	
+	
 	public int getHumanY() {
 		return humanY;
+		/*
+		for (int i = 0; i < creatureList.size(); i++) {
+			if(creatureList.get(i).isHuman())
+				return creatureList.get(i).getY();
+		}
+		return -1;
+		*/
 	}
 
-	public void setHumanY(int humanY) {
-		this.humanY = humanY;
+	public void setHumanY(int y) {
+		this.humanY = y;
 	}
 
 	public int getHumanX() {
 		return humanX;
+		/*
+		for (int i = 0; i < creatureList.size(); i++) {
+			if(creatureList.get(i).isHuman())
+				return creatureList.get(i).getX();
+		}
+		return -1;
+		*/
 	}
 
-	public void setHumanX(int humanX) {
-		this.humanX = humanX;
+	public void setHumanX(int x) {
+		this.humanX = x;
 	}
 
 	public void refreshHuman(int y, int x) {
@@ -252,7 +271,7 @@ public class Game implements Runnable {
 
 			if (board[y][x].isFree() && !board[y][x].isLadder() && board[y + 1][x].isSupport()) {
 				board[y][x].addApple();
-				System.out.println(++i);
+				++i;
 			}
 		}
 	}
@@ -335,7 +354,7 @@ public class Game implements Runnable {
 		teleportStatus(c);
 		applyGravity(c);
 	}
-
+	
 	@Override
 	public void run() {
 		start();

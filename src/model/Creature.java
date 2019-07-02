@@ -41,4 +41,10 @@ public abstract class Creature {
 	public void setTeleported(boolean teleported) {
 		this.teleported = teleported;
 	}
+	
+	public boolean isHuman() {
+		if(id == 7)
+			return true;
+		return false;
+	}
 }
