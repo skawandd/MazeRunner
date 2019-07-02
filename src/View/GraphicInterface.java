@@ -92,21 +92,18 @@ public class GraphicInterface extends Application implements Runnable {
 						iv = new ImageView(new Image(floor));
 						break;
 					case 1:
-						iv = new ImageView(new Image(floor));
-						break;
-					case 2:
 						iv = new ImageView(new Image(brick));
 						break;
-					case 3:
+					case 2:
 						iv = new ImageView(new Image(hyper));
 						break;
-					case 4:
+					case 3:
 						iv = new ImageView(new Image(freezer));
 						break;
-					case 5:
+					case 4:
 						iv = new ImageView(new Image(ladder));
 						break;
-					case 6:
+					case 5:
 						iv = new ImageView(new Image(goal));
 						break;
 					default:

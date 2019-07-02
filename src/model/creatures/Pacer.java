@@ -6,7 +6,7 @@ import model.Square;
 public class Pacer extends Creature{
 
 	public Pacer(int y, int x) {
-		super(9, y, x);
+		super(8, y, x);
 		// TODO Auto-generated constructor stub
 	}
 

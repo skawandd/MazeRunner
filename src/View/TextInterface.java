@@ -34,26 +34,24 @@ public class TextInterface {
 		
 		switch (s.getId()) {
 		case 0:
-			return "X";
-		case 1:
 			return ".";
-		case 2:
+		case 1:
 			return "#";
-		case 3:
+		case 2:
 			return "Y";
-		case 4:
+		case 3:
 			return "F";
-		case 5:
+		case 4:
 			return"H";
-		case 6:
+		case 5:
 			return "G";
-		case 7:
+		case 6:
 			return "&";
-		case 8:
+		case 7:
 			return "J";
-		case 9:
+		case 8:
 			return "P";
-		case 10:
+		case 9:
 			return "R";
 		default:
 			return " ";

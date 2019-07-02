@@ -43,7 +43,7 @@ public abstract class Creature {
 	}
 	
 	public boolean isHuman() {
-		if(id == 7)
+		if(id == 6)
 			return true;
 		return false;
 	}

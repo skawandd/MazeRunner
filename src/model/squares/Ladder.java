@@ -4,7 +4,7 @@ import model.Square;
 
 public class Ladder extends Square {
 	public Ladder() {
-		super(5);
+		super(4);
 	}
 
 }

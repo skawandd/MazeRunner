@@ -42,22 +42,22 @@ public abstract class Square {
 	}
 
 	public void addApple() {
-		if(id == 1)
+		if(id == 0)
 			apple = true;
 	}
 	
 	public void removeApple() {
-		if(id == 1)
+		if(id == 0)
 			apple = false;
 	}
 	
 	public void addDig() {
-		if(id == 2)
+		if(id == 1)
 			dig = true;
 	}
 	
 	public void removeDig() {
-		if(id == 2)
+		if(id == 1)
 			dig = false;
 	}
 	
@@ -70,19 +70,19 @@ public abstract class Square {
 	}
 
 	public boolean isJumper() {
-		if(id == 8)
+		if(id == 7)
 			return true;
 		return false;
 	}
 	
 	public boolean isPacer() {
-		if(id == 9)
+		if(id == 8)
 			return true;
 		return false;
 	}
 	
 	public boolean isRover() {
-		if(id == 10)
+		if(id == 9)
 			return true;
 		return false;
 	}
@@ -101,13 +101,13 @@ public abstract class Square {
 	}
 	
 	public boolean isLadder() {
-		if(id == 5)
+		if(id == 4)
 			return true;
 		return false;
 	}
 	
 	public boolean isBrick() {
-		if(id == 2)
+		if(id == 1)
 			return true;
 		return false;
 	}
@@ -133,7 +133,7 @@ public abstract class Square {
 	}
 	
 	public boolean isHyper() {
-		if(id == 3)
+		if(id == 2)
 			return true;
 		return false;
 	}
@@ -180,7 +180,7 @@ public abstract class Square {
 	
 	public Creature getHuman() {
 		for(int i = 0; i < list.size(); ++i) {
-			if(list.get(i).getId() == 7)
+			if(list.get(i).getId() == 6)
 				return list.get(i);
 		}
 		return null;

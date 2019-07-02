@@ -20,7 +20,6 @@ import model.creatures.Jumper;
 import model.creatures.Pacer;
 import model.creatures.Rover;
 import model.squares.Brick;
-import model.squares.Empty;
 import model.squares.Floor;
 import model.squares.Freezer;
 import model.squares.Goal;
@@ -115,42 +114,38 @@ public class CSVElement {
                     // We need both '\n' and '\r' for Windows systems
                     switch (Character.getNumericValue(f_character)) {
                     case 0:
-                    	csvGrid[line][column] = new Empty();
+                    	csvGrid[line][column] = new Floor();
                     	break;
                     case 1:
-                    	csvGrid[line][column] = new Floor();	
+                    	csvGrid[line][column] = new Brick();	
                     	break;
                     case 2:
-                    	csvGrid[line][column] = new Brick();
+                    	csvGrid[line][column] = new Hyper(line, column);
                     	break;
                     case 3:
-                    	csvGrid[line][column]= new Hyper(line, column);
+                    	csvGrid[line][column]= new Freezer();
                     	break;
                     case 4:
-                    	csvGrid[line][column] = new Freezer();
+                    	csvGrid[line][column] = new Ladder();
                     	break;
                     case 5:
-                    	csvGrid[line][column]= new Ladder();
+                    	csvGrid[line][column] = new Goal();
                     	break;
                     case 6:
-                    	csvGrid[line][column] = new Goal();
+                    	csvGrid[line][column]= new Floor();
+						csvGrid[line][column].addCreature(new Human(line, column));
                     	break;
 					case 7:
 						csvGrid[line][column]= new Floor();
-						csvGrid[line][column].addCreature(new Human(line, column));
+						csvGrid[line][column].addCreature(new Jumper(line, column));
 						break;
 					case 8:
 						csvGrid[line][column]= new Floor();
-						csvGrid[line][column].addCreature(new Jumper(line, column));
+						csvGrid[line][column].addCreature(new Pacer(line, column));
 						break;
 					case 9:
 						csvGrid[line][column]= new Floor();
-						csvGrid[line][column].addCreature(new Pacer(line, column));
-						break;
-					case 10:
-						csvGrid[line][column]= new Floor();
 						csvGrid[line][column].addCreature(new Rover(line, column));
-						break;
 					default:
 						break;
 					}

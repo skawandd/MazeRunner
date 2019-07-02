@@ -6,11 +6,11 @@ public class Hyper extends Square {
 	private int hyperId;
 	
 	public Hyper() {
-		super(3);
+		super(2);
 	}
 	
 	public Hyper(int y, int x) {
-		super(3, y, x);
+		super(2, y, x);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import model.Square;
 public class Human extends Creature{
 	
 	public Human(int y, int x) {
-		super(7, y, x);
+		super(6, y, x);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -5,7 +5,7 @@ import model.Creature;
 public class Rover extends Creature{
 
 	public Rover(int y, int x) {
-		super(10, y, x);
+		super(9, y, x);
 		// TODO Auto-generated constructor stub
 	}
 
