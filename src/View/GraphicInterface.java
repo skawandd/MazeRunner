@@ -1,23 +1,20 @@
 package View;
 
-import java.util.Observable;
-import java.util.Observer;
-
+import controller.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Game;
 import model.Square;
 
 public class GraphicInterface extends Application implements Runnable {
 	volatile Game game;
+	private Controller controller;
 	volatile boolean win = false;
 
 	volatile RunnableVBox vbox = new RunnableVBox();
@@ -42,10 +39,12 @@ public class GraphicInterface extends Application implements Runnable {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		game = new Game();
-		Thread thread1 = new Thread(game);
-		thread1.start();
+		controller = new Controller(game);
+	//	Thread thread1 = new Thread(game);
+	//	thread1.start();
 		Thread thread2 = new Thread(this);
 		thread2.start();
+	//	game.start();
 		gridPane.getChildren().add(buildGrid());
 
 		System.out.println(game.getBoard()[0][0].getId());
@@ -58,6 +57,22 @@ public class GraphicInterface extends Application implements Runnable {
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();
+		
+		scene.setOnKeyPressed(e -> {
+			if(e.getCode() == KeyCode.L) 
+				controller.move_right();
+			if(e.getCode() == KeyCode.J)
+				controller.move_left();
+			if(e.getCode() == KeyCode.I)
+				controller.move_up();
+			if(e.getCode() == KeyCode.K)
+				controller.move_down();
+			
+			if(e.getCode() == KeyCode.S)
+				controller.dig_sw();
+			if(e.getCode() == KeyCode.F)
+				controller.dig_se();
+		});
 
 
 	}
