@@ -8,6 +8,7 @@ import View.TextInterface;
 import controller.CSVElement;
 import controller.Controller;
 import model.creatures.Human;
+import model.creatures.Jumper;
 import model.squares.Brick;
 import model.squares.Floor;
 import model.squares.Freezer;
@@ -287,6 +288,15 @@ public class Game extends Observable implements Runnable {
 				refreshHuman(c.getY(), c.getX());
 		}
 		checkAll(board[c.getY()][c.getX()]);
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void dig(int y, int x) {
+		board[y][x].addDig();
+		powerDown();
+		setChanged();
+		notifyObservers();
 	}
 
 	public void RandomTeleport(Creature c) {
@@ -326,8 +336,10 @@ public class Game extends Observable implements Runnable {
 
 	public void applyGravity(Creature c) {
 		while (!board[c.getY() + 1][c.getX()].isSupport() && !board[c.getY()][c.getX()].isLadder()
-				&& c.getY() + 2 < board.length)
+				&& c.getY() + 2 < board.length) {
 			move(c, c.getY()+1, c.getX());
+			
+		}
 	}
 	
 	public void initElements() {

@@ -1,5 +1,8 @@
 package View;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import controller.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,14 +15,15 @@ import javafx.stage.Stage;
 import model.Game;
 import model.Square;
 
-public class GraphicInterface extends Application implements Runnable {
-	volatile Game game;
+public class GraphicInterface extends Application implements Observer {
+	private volatile static Game game;
 	private Controller controller;
 	volatile boolean win = false;
 
 	volatile RunnableVBox vbox = new RunnableVBox();
-	volatile RunnableGridPane gridPane = new RunnableGridPane();
-
+//	volatile RunnableGridPane gridPane = new RunnableGridPane();
+	private GridPane gridPane = new GridPane();
+	
 	final private String sprites_path = "file:res/sprites/";
 	final private String floor = sprites_path + "floor.png";
 	final private String brick = sprites_path + "brick.png";
@@ -40,10 +44,11 @@ public class GraphicInterface extends Application implements Runnable {
 	public void start(Stage primaryStage) throws Exception {
 		game = new Game();
 		controller = new Controller(game);
+		game.addObserver(this);
 	//	Thread thread1 = new Thread(game);
 	//	thread1.start();
-		Thread thread2 = new Thread(this);
-		thread2.start();
+/*		Thread thread2 = new Thread(this);
+		thread2.start(); */
 	//	game.start();
 		gridPane.getChildren().add(buildGrid());
 
@@ -136,12 +141,20 @@ public class GraphicInterface extends Application implements Runnable {
 		}
 		return gridPane;
 	}
-
-	public void setGame(Game game) {
-		this.game = game;
+	
+	public static Game getGame() {
+		return game;
 	}
 
 	@Override
+	public void update(Observable arg0, Object arg1) {
+		//gridPane = buildGrid();
+		System.out.println(arg1);
+		vbox.getChildren().clear();
+		vbox.getChildren().add(buildGrid());		
+	}
+
+/*	@Override
 	public void run() {
 		while (!win) {
 			
@@ -160,6 +173,6 @@ public class GraphicInterface extends Application implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
-	}
+	
+	} */
 }

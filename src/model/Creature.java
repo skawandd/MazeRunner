@@ -47,4 +47,6 @@ public abstract class Creature {
 			return true;
 		return false;
 	}
+	
+
 }

@@ -86,8 +86,7 @@ public class Controller {
 		
 		if(game.getPower() > 0 && game.getBoard()[y+1][x-1].isBrick() 
 			&& game.getBoard()[y][x-1].isFree() && !game.getBoard()[y+1][x-1].isDig()) {
-			game.getBoard()[y+1][x-1].addDig();
-			game.powerDown();
+			game.dig(y+1, x-1);
 		}
 		
 	}
@@ -98,8 +97,7 @@ public class Controller {
 		
 		if(game.getPower() > 0 && game.getBoard()[y+1][x+1].isBrick() 
 			&& game.getBoard()[y][x+1].isFree() && !game.getBoard()[y+1][x+1].isDig()) {
-			game.getBoard()[y+1][x+1].addDig();
-			game.powerDown();
+			game.dig(y+1, x+1);
 		}
 	}
 
