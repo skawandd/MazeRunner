@@ -4,12 +4,14 @@ public abstract class Creature {
 	private int id;
 	protected int y, x;
 	private boolean teleported;
+	protected boolean alive;
 	
 	public Creature(int id, int y, int x) { 
 		this.id = id;
 		this.x = x;
 		this.y = y;
 		teleported = false;
+		alive = true;
 	}
 	
 	public abstract void move();

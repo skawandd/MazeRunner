@@ -5,12 +5,14 @@ import java.util.Observer;
 
 import controller.Controller;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Game;
 import model.Square;
@@ -20,7 +22,7 @@ public class GraphicInterface extends Application implements Observer {
 	private Controller controller;
 	volatile boolean win = false;
 
-	volatile RunnableVBox vbox = new RunnableVBox();
+	volatile VBox vbox = new VBox();
 //	volatile RunnableGridPane gridPane = new RunnableGridPane();
 	private GridPane gridPane = new GridPane();
 	
@@ -72,7 +74,6 @@ public class GraphicInterface extends Application implements Observer {
 				controller.move_up();
 			if(e.getCode() == KeyCode.K)
 				controller.move_down();
-			
 			if(e.getCode() == KeyCode.S)
 				controller.dig_sw();
 			if(e.getCode() == KeyCode.F)
@@ -150,10 +151,12 @@ public class GraphicInterface extends Application implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		Platform.runLater(() -> {
 		//gridPane = buildGrid();
 		System.out.println(arg1);
 		vbox.getChildren().clear();
-		vbox.getChildren().add(buildGrid());		
+		vbox.getChildren().add(buildGrid());	
+		});
 	}
 
 /*	@Override
