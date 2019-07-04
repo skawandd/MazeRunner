@@ -1,8 +1,8 @@
-package model;
+package model.creatures;
 
 public abstract class Creature {
 	private int id;
-	private int y, x;
+	protected int y, x;
 	private boolean teleported;
 	
 	public Creature(int id, int y, int x) { 
@@ -44,6 +44,22 @@ public abstract class Creature {
 	
 	public boolean isHuman() {
 		if(id == 6)
+			return true;
+		return false;
+	}
+	public boolean isJumper() {
+		if(id == 7)
+			return true;
+		return false;
+	}
+	public boolean isRover() {
+		if(id == 9)
+			return true;
+		return false;
+	}
+	
+	public boolean isPacer() {
+		if(id == 8)
 			return true;
 		return false;
 	}

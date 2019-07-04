@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import model.creatures.Creature;
+
 public abstract class Square {
 	protected int id, x, y;
 	private boolean apple, dig, alive;
@@ -181,6 +183,27 @@ public abstract class Square {
 	public Creature getHuman() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 6)
+				return list.get(i);
+		}
+		return null;
+	}
+	public Creature getJumper() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 7)
+				return list.get(i);
+		}
+		return null;
+	}
+	public Creature getRover() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 9)
+				return list.get(i);
+		}
+		return null;
+	}
+	public Creature getPacer() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 8)
 				return list.get(i);
 		}
 		return null;

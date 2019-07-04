@@ -92,7 +92,9 @@ public class GraphicInterface extends Application implements Observer {
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
 				s = board[y][x];
-				if (s.getHuman() != null) {
+				if (s.getJumper()!= null){
+					iv = new ImageView(new Image(jumper));
+				}else if (s.getHuman() != null) {
 					iv = new ImageView(new Image(human_right));
 					/*
 					 * if (s.getJumper() != null) { FIXME: add getJumper, getPacer, getRover + side

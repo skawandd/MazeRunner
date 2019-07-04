@@ -1,6 +1,5 @@
 package model.creatures;
 
-import model.Creature;
 import model.Square;
 
 public class Human extends Creature{

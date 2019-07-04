@@ -1,7 +1,5 @@
 package model.creatures;
 
-import model.Creature;
-
 public class Rover extends Creature{
 
 	public Rover(int y, int x) {

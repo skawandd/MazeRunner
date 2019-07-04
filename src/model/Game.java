@@ -7,6 +7,7 @@ import java.util.Random;
 import View.TextInterface;
 import controller.CSVElement;
 import controller.Controller;
+import model.creatures.Creature;
 import model.creatures.Human;
 import model.creatures.Jumper;
 import model.squares.Brick;
@@ -288,22 +289,22 @@ public class Game extends Observable implements Runnable {
 				refreshHuman(c.getY(), c.getX());
 		}
 		checkAll(board[c.getY()][c.getX()]);
-		setChanged();
-		notifyObservers();
-	}
-	
-	public void dig(int y, int x) {
-		board[y][x].addDig();
-		powerDown();
-		setChanged();
+		setChanged(); 
 		notifyObservers();
 	}
 
+	public void dig(int y , int x) {
+		board[y][x].addDig();
+		powerDown(); 
+		setChanged(); 
+		notifyObservers(); 
+	}
+	
 	public void RandomTeleport(Creature c) {
 		Random r = new Random();
 		int x, y;
 		boolean flag = false;
-
+		System.out.println("TELEPORT");
 		while (!flag) {
 			x = r.nextInt(board[0].length - 1);
 			y = r.nextInt(board.length - 1);
@@ -336,10 +337,8 @@ public class Game extends Observable implements Runnable {
 
 	public void applyGravity(Creature c) {
 		while (!board[c.getY() + 1][c.getX()].isSupport() && !board[c.getY()][c.getX()].isLadder()
-				&& c.getY() + 2 < board.length) {
+				&& c.getY() + 2 < board.length)
 			move(c, c.getY()+1, c.getX());
-			
-		}
 	}
 	
 	public void initElements() {
@@ -351,6 +350,16 @@ public class Game extends Observable implements Runnable {
 					setHumanY(y);
 					setHumanX(x);
 				}
+				if(board[y][x].getHuman() != null) {
+					setHumanY(y);
+					setHumanX(x);
+				}
+				if(board[y][x].getJumper()!= null) {
+					 Thread thread  = new Thread((Jumper)board[y][x].getJumper()); 
+					 thread.start();
+					 
+				}
+		
 			}
 		}
 	}
@@ -360,7 +369,17 @@ public class Game extends Observable implements Runnable {
 			powerUp();
 			s.removeApple();
 		}
-		Creature c = s.getHuman();
+		Creature c = null;
+		if(s.getHuman() != null)
+			c = s.getHuman();
+		else if(s.getJumper() != null) {
+			System.out.println("JUMPER");
+			c = s.getJumper();
+				}
+		else if(s.getPacer() != null)
+			c = s.getPacer();
+		else if(s.getRover() != null)
+			c = s.getRover();
 		if (s.isHyper())
 			hyperTeleport(c);
 		teleportStatus(c);
