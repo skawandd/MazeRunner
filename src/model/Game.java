@@ -10,6 +10,7 @@ import controller.Controller;
 import model.creatures.Creature;
 import model.creatures.Human;
 import model.creatures.Jumper;
+import model.creatures.Rover;
 import model.squares.Brick;
 import model.squares.Floor;
 import model.squares.Freezer;
@@ -35,7 +36,7 @@ public class Game extends Observable implements Runnable {
 
 	public int start() {
 		while (!loose) {
-			new TextInterface(this).showBoard();
+			TextInterface.showBoard();
 			new Controller(this).getKeyboard();
 			// readMap();
 			//setChanged();
@@ -309,7 +310,7 @@ public class Game extends Observable implements Runnable {
 			x = r.nextInt(board[0].length - 1);
 			y = r.nextInt(board.length - 1);
 
-			if (board[y][x].isFree() && !board[y][x].isLadder() && board[y + 1][x].isSupport()) {
+			if (board[y][x].isFree() /*&& !board[y][x].isLadder() && board[y + 1][x].isSupport()*/) {
 				move(c, y, x);
 				flag = true;
 			}
@@ -336,9 +337,9 @@ public class Game extends Observable implements Runnable {
 	}
 
 	public void applyGravity(Creature c) {
-		while (!board[c.getY() + 1][c.getX()].isSupport() && !board[c.getY()][c.getX()].isLadder()
-				&& c.getY() + 2 < board.length)
-			move(c, c.getY()+1, c.getX());
+		if (c.isFalling()) {
+			move(c, c.getY()+1, c.getX());	
+		}
 	}
 	
 	public void initElements() {
@@ -357,9 +358,11 @@ public class Game extends Observable implements Runnable {
 				if(board[y][x].getJumper()!= null) {
 					 Thread thread  = new Thread((Jumper)board[y][x].getJumper()); 
 					 thread.start();
-					 
 				}
-		
+				if(board[y][x].getRover()!= null) {
+					 Thread thread  = new Thread((Rover)board[y][x].getRover()); 
+					 thread.start();
+				}
 			}
 		}
 	}

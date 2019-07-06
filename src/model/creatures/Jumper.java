@@ -8,7 +8,6 @@ public class Jumper extends Creature implements Runnable {
 	
 	public Jumper(int y, int x) {
 		super(7, y, x);
-		GraphicInterface.getGame();
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class Jumper extends Creature implements Runnable {
 				Thread.sleep(time*1000);
 				move();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -41,7 +41,7 @@ public class Controller {
 		else if(c == 'f' || c == 'F')
 			dig_se();
 		else if(c == 'n' || c == 'N') //FIXME Next level
-			System.exit(0);
+			game.loadMap();
 		else if(c == 'q' || c == 'Q')
 			System.exit(0);
 		else 
@@ -62,6 +62,7 @@ public class Controller {
 		int y = game.getHumanY();
 
 		game.move(board[y][x].getHuman(), y+1, x);
+		
 	}
 
 	public void move_right() {

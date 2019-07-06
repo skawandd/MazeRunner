@@ -95,7 +95,9 @@ public class GraphicInterface extends Application implements Observer {
 				s = board[y][x];
 				if (s.getJumper()!= null){
 					iv = new ImageView(new Image(jumper));
-				}else if (s.getHuman() != null) {
+				}else if(s.getRover() != null) {
+					iv = new ImageView(new Image(rover));
+				} else if(s.getHuman() != null) {
 					iv = new ImageView(new Image(human_right));
 					/*
 					 * if (s.getJumper() != null) { FIXME: add getJumper, getPacer, getRover + side
@@ -153,7 +155,7 @@ public class GraphicInterface extends Application implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
 		//gridPane = buildGrid();
-		System.out.println(arg1);
+		TextInterface.showBoard();
 		vbox.getChildren().clear();
 		vbox.getChildren().add(buildGrid());	
 		});

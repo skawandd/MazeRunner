@@ -10,8 +10,8 @@ public class TextInterface {
 		this.game = game;
 	}
 	
-	public void showBoard() {
-		Square[][] board = game.getBoard();
+	public static void showBoard() {
+		Square[][] board = GraphicInterface.getGame().getBoard();
 		
 		System.out.println(" ============ MAZE RUNNER ============ ");
 		
@@ -24,7 +24,7 @@ public class TextInterface {
 		}
 	}
 	
-	public String getSquareStyle(Square s) {
+	public static String getSquareStyle(Square s) {
 		if(s.getHuman() != null)
 			return "&";
 		else if(s.getApple())

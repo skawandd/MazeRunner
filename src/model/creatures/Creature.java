@@ -1,5 +1,8 @@
 package model.creatures;
 
+import View.GraphicInterface;
+import model.Square;
+
 public abstract class Creature {
 	private int id;
 	protected int y, x;
@@ -66,5 +69,24 @@ public abstract class Creature {
 		return false;
 	}
 	
-
+	public boolean isFalling() {
+		Square[][] board = GraphicInterface.getGame().getBoard();
+		if (!board[y + 1][x].isSupport() && !board[y][x].isLadder()
+				&& y + 2 < board.length)
+			return true;
+		return false;
+	}
+	
+	public boolean isStuck() {
+		Square[][] board = GraphicInterface.getGame().getBoard();
+		if(board[y-1][x].isFree())
+			return false;
+		if(board[y+1][x].isFree())
+			return false;
+		if(board[y][x-1].isFree())
+			return false;
+		if(board[y][x+1].isFree())
+			return false;
+		return true;
+	}
 }

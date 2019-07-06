@@ -70,31 +70,6 @@ public abstract class Square {
 	public boolean getAlive() {
 		return this.alive;
 	}
-
-	public boolean isJumper() {
-		if(id == 7)
-			return true;
-		return false;
-	}
-	
-	public boolean isPacer() {
-		if(id == 8)
-			return true;
-		return false;
-	}
-	
-	public boolean isRover() {
-		if(id == 9)
-			return true;
-		return false;
-	}
-	
-	public boolean isMonster() {
-		if(isJumper() || isPacer() || isRover())
-			return true;
-		return false;
-	}
-	
 	
 	public boolean isFree() {
 		if(!isBrick() || isDig())
