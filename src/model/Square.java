@@ -115,6 +115,12 @@ public abstract class Square {
 		return false;
 	}
 	
+	public boolean isFreezer() {
+		if(id == 3)
+			return true;
+		return false;
+	}
+	
 	public boolean isSupport() {
 		if((isBrick() && !isDig())|| isLadder())
 			return true;
@@ -187,4 +193,5 @@ public abstract class Square {
 	public int getHyperId() {
 		return -1;
 	}
+
 }

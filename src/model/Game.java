@@ -24,9 +24,9 @@ public class Game extends Observable implements Runnable {
 	private int humanX, humanY, power, moves;
 	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
-	
+
 	public Game() {
-	//	board = createMap(17, 20); TODO default map
+		// board = createMap(17, 20); TODO default map
 		this.board = loadMap();
 		initElements();
 		loose = false;
@@ -39,8 +39,8 @@ public class Game extends Observable implements Runnable {
 			TextInterface.showBoard();
 			new Controller(this).getKeyboard();
 			// readMap();
-			//setChanged();
-			//notifyObservers(this);
+			// setChanged();
+			// notifyObservers(this);
 		}
 		System.out.println("GG");
 		return 0;
@@ -49,8 +49,8 @@ public class Game extends Observable implements Runnable {
 	public Square[][] loadMap() {
 		try {
 			CSVElement csvElement = new CSVElement(CSVElement.pick_CSVLevel());
-			board = csvElement.getCsvGrid(); 
-			return board; 
+			board = csvElement.getCsvGrid();
+			return board;
 		} catch (Exception e) {
 			return createMap(17, 20);
 		}
@@ -58,7 +58,7 @@ public class Game extends Observable implements Runnable {
 
 	public Square[][] createMap(int w, int h) {
 		Square[][] board = new Square[w][h];
-		
+
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
 				if (y > 0 && y < board.length - 1 && x > 0 && x < board[0].length - 1)
@@ -164,7 +164,7 @@ public class Game extends Observable implements Runnable {
 		board[7][1] = new Hyper(7, 1);
 		board[4][18] = new Hyper(4, 18);
 		board[15][10] = new Freezer();
-		
+
 		return board;
 	}
 
@@ -180,17 +180,13 @@ public class Game extends Observable implements Runnable {
 		return this.board;
 	}
 
-	
-	
 	public int getHumanY() {
 		return humanY;
 		/*
-		for (int i = 0; i < creatureList.size(); i++) {
-			if(creatureList.get(i).isHuman())
-				return creatureList.get(i).getY();
-		}
-		return -1;
-		*/
+		 * for (int i = 0; i < creatureList.size(); i++) {
+		 * if(creatureList.get(i).isHuman()) return creatureList.get(i).getY(); } return
+		 * -1;
+		 */
 	}
 
 	public void setHumanY(int y) {
@@ -200,12 +196,10 @@ public class Game extends Observable implements Runnable {
 	public int getHumanX() {
 		return humanX;
 		/*
-		for (int i = 0; i < creatureList.size(); i++) {
-			if(creatureList.get(i).isHuman())
-				return creatureList.get(i).getX();
-		}
-		return -1;
-		*/
+		 * for (int i = 0; i < creatureList.size(); i++) {
+		 * if(creatureList.get(i).isHuman()) return creatureList.get(i).getX(); } return
+		 * -1;
+		 */
 	}
 
 	public void setHumanX(int x) {
@@ -224,27 +218,27 @@ public class Game extends Observable implements Runnable {
 	public int getMoves() {
 		return moves;
 	}
-	
+
 	public int getHyperSize() {
 		return hyperList.size();
 	}
-	
+
 	public Hyper getHyper(int id) {
-		for(int i = 0; i < hyperList.size(); ++i) {
-			if(hyperList.get(i).getHyperId() == id)
+		for (int i = 0; i < hyperList.size(); ++i) {
+			if (hyperList.get(i).getHyperId() == id)
 				return hyperList.get(i);
 		}
 		return null;
 	}
-	
+
 	public Hyper getNextHyper(int id) {
-		if(id < hyperList.size()-1 && id >= 0) {
-			System.out.println(id + " L221"+getHyper(id+1) + getHyper(id+1).y +";"+getHyper(id+1).x);
-			return getHyper(id+1);
+		if (id < hyperList.size() - 1 && id >= 0) {
+			System.out.println(id + " L221" + getHyper(id + 1) + getHyper(id + 1).y + ";" + getHyper(id + 1).x);
+			return getHyper(id + 1);
 		}
 		return getHyper(0);
 	}
-	
+
 	public void addHyper(Hyper h) {
 		h.setHyperId(hyperList.size());
 		hyperList.add(h);
@@ -278,29 +272,29 @@ public class Game extends Observable implements Runnable {
 			}
 		}
 	}
-	
+
 	public void move(Creature c, int toY, int toX) {
-		if(board[toY][toX].isFree()) {
+		if (board[toY][toX].isFree()) {
 			board[c.getY()][c.getX()].removeCreature(c);
 			c.setY(toY);
 			c.setX(toX);
 			board[c.getY()][c.getX()].addCreature(c);
-			
+
 			if (board[c.getY()][c.getX()].getHuman() != null)
 				refreshHuman(c.getY(), c.getX());
 		}
+		setChanged();
+		notifyObservers();
 		checkAll(board[c.getY()][c.getX()]);
-		setChanged(); 
+	}
+
+	public void dig(int y, int x) {
+		board[y][x].addDig();
+		powerDown();
+		setChanged();
 		notifyObservers();
 	}
 
-	public void dig(int y , int x) {
-		board[y][x].addDig();
-		powerDown(); 
-		setChanged(); 
-		notifyObservers(); 
-	}
-	
 	public void RandomTeleport(Creature c) {
 		Random r = new Random();
 		int x, y;
@@ -310,7 +304,7 @@ public class Game extends Observable implements Runnable {
 			x = r.nextInt(board[0].length - 1);
 			y = r.nextInt(board.length - 1);
 
-			if (board[y][x].isFree() /*&& !board[y][x].isLadder() && board[y + 1][x].isSupport()*/) {
+			if (board[y][x].isFree() /* && !board[y][x].isLadder() && board[y + 1][x].isSupport() */) {
 				move(c, y, x);
 				flag = true;
 			}
@@ -319,49 +313,49 @@ public class Game extends Observable implements Runnable {
 		if (board[c.getY()][c.getX()].getHuman() != null)
 			refreshHuman(c.getY(), c.getX());
 	}
-	
+
 	public void hyperTeleport(Creature c) {
 		Hyper nextHyper;
-		if(board[c.getY()][c.getX()].isHyper()) {
-			nextHyper = getNextHyper(hyperList.indexOf((Hyper)board[c.getY()][c.getX()]));
-			if(!c.isTeleported()) {
-				c.setTeleported(true);
-				move(c, nextHyper.getY(), nextHyper.getX());
-			}
-		}	
+		if (board[c.getY()][c.getX()].isHyper() && !c.isTeleported()) {
+			nextHyper = getNextHyper(hyperList.indexOf((Hyper) board[c.getY()][c.getX()]));
+			c.setTeleported(true);
+			move(c, nextHyper.getY(), nextHyper.getX());
+		}
 	}
-	
-	public void teleportStatus(Creature c) {
-		if(!board[c.getY()][c.getX()].isHyper())
+
+	public void checkStatus(Creature c) {
+		if (!board[c.getY()][c.getX()].isHyper())
 			c.setTeleported(false);
+		if (!board[c.getY()][c.getX()].isFreezer())
+			c.setFreezed(false);
 	}
 
 	public void applyGravity(Creature c) {
 		if (c.isFalling()) {
-			move(c, c.getY()+1, c.getX());	
+			move(c, c.getY() + 1, c.getX());
 		}
 	}
-	
+
 	public void initElements() {
-		for (int y = board.length-1; y > 0 ; --y) {
-			for (int x = board[0].length-1; x > 0; --x) {
-				if(board[y][x].isHyper())
-					addHyper((Hyper)board[y][x]);
-				if(board[y][x].getHuman() != null) {
+		for (int y = board.length - 1; y > 0; --y) {
+			for (int x = board[0].length - 1; x > 0; --x) {
+				if (board[y][x].isHyper())
+					addHyper((Hyper) board[y][x]);
+				if (board[y][x].getHuman() != null) {
 					setHumanY(y);
 					setHumanX(x);
 				}
-				if(board[y][x].getHuman() != null) {
+				if (board[y][x].getHuman() != null) {
 					setHumanY(y);
 					setHumanX(x);
 				}
-				if(board[y][x].getJumper()!= null) {
-					 Thread thread  = new Thread((Jumper)board[y][x].getJumper()); 
-					 thread.start();
+				if (board[y][x].getJumper() != null) {
+					Thread thread = new Thread((Jumper) board[y][x].getJumper());
+					thread.start();
 				}
-				if(board[y][x].getRover()!= null) {
-					 Thread thread  = new Thread((Rover)board[y][x].getRover()); 
-					 thread.start();
+				if (board[y][x].getRover() != null) {
+					Thread thread = new Thread((Rover) board[y][x].getRover());
+					thread.start();
 				}
 			}
 		}
@@ -373,22 +367,23 @@ public class Game extends Observable implements Runnable {
 			s.removeApple();
 		}
 		Creature c = null;
-		if(s.getHuman() != null)
+		if (s.getHuman() != null)
 			c = s.getHuman();
-		else if(s.getJumper() != null) {
+		else if (s.getJumper() != null) {
 			System.out.println("JUMPER");
 			c = s.getJumper();
-				}
-		else if(s.getPacer() != null)
+		} else if (s.getPacer() != null)
 			c = s.getPacer();
-		else if(s.getRover() != null)
+		else if (s.getRover() != null)
 			c = s.getRover();
 		if (s.isHyper())
 			hyperTeleport(c);
-		teleportStatus(c);
+		if (s.isFreezer())
+			c.freeze();;
+		checkStatus(c);
 		applyGravity(c);
 	}
-	
+
 	@Override
 	public void run() {
 		start();

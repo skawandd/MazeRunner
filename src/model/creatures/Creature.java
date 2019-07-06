@@ -1,12 +1,15 @@
 package model.creatures;
 
+import java.util.Random;
+
 import View.GraphicInterface;
+import model.Game;
 import model.Square;
 
 public abstract class Creature {
 	private int id;
 	protected int y, x;
-	private boolean teleported;
+	private boolean teleported, freezed;
 	protected boolean alive;
 	
 	public Creature(int id, int y, int x) { 
@@ -14,6 +17,7 @@ public abstract class Creature {
 		this.x = x;
 		this.y = y;
 		teleported = false;
+		freezed = false;
 		alive = true;
 	}
 	
@@ -45,6 +49,14 @@ public abstract class Creature {
 	
 	public void setTeleported(boolean teleported) {
 		this.teleported = teleported;
+	}
+	
+	public boolean isFreezed() {
+		return freezed;	
+	}
+	
+	public void setFreezed(boolean freezed) {
+		this.freezed = freezed;	
 	}
 	
 	public boolean isHuman() {
@@ -89,4 +101,19 @@ public abstract class Creature {
 			return false;
 		return true;
 	}
+	
+	public void freeze() {
+		Game game = GraphicInterface.getGame();
+		if (game.getBoard()[y][x].isFreezer() && !isFreezed()) {
+			setFreezed(true);
+			int time = new Random().nextInt(3-1)+1;
+			try {
+				Thread.sleep(time*1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
