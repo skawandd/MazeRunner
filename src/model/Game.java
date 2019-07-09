@@ -37,7 +37,7 @@ public class Game extends Observable implements Runnable {
 	public int start() {
 		while (!loose) {
 			TextInterface.showBoard();
-			new Controller(this).getKeyboard();
+		//	new Controller(this).getKeyboard();
 			// readMap();
 			// setChanged();
 			// notifyObservers(this);
@@ -348,6 +348,8 @@ public class Game extends Observable implements Runnable {
 				if (board[y][x].getHuman() != null) {
 					setHumanY(y);
 					setHumanX(x);
+					Thread thread = new Thread((Human) board[y][x].getHuman());
+					thread.start();
 				}
 				if (board[y][x].getJumper() != null) {
 					Thread thread = new Thread((Jumper) board[y][x].getJumper());

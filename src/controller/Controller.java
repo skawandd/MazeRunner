@@ -11,7 +11,7 @@ public class Controller {
 	public Controller(Game game) {
 		this.game = game;
 	}
-
+/*
 	public void getKeyboard() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -62,7 +62,6 @@ public class Controller {
 		int y = game.getHumanY();
 
 		game.move(board[y][x].getHuman(), y+1, x);
-		
 	}
 
 	public void move_right() {
@@ -101,7 +100,7 @@ public class Controller {
 			game.dig(y+1, x+1);
 		}
 	}
-
+*/
 	public void setGame(Game game) {
 		this.game = game;
 	}

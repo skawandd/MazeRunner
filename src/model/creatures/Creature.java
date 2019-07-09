@@ -1,5 +1,6 @@
 package model.creatures;
 
+import java.util.Observable;
 import java.util.Random;
 
 import View.GraphicInterface;
@@ -105,14 +106,75 @@ public abstract class Creature {
 	public void freeze() {
 		Game game = GraphicInterface.getGame();
 		if (game.getBoard()[y][x].isFreezer() && !isFreezed()) {
+			System.out.println("FREEZE");
 			setFreezed(true);
 			int time = new Random().nextInt(3-1)+1;
-			try {
-				Thread.sleep(time*1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			sleep(time*1000);
+		}
+	}
+	
+	public void sleep(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void move_up() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+
+		game.move(game.getBoard()[y][x].getHuman(), y-1, x);
+	}
+
+	public void move_down() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+
+		game.move(game.getBoard()[y][x].getHuman(), y+1, x);
+		
+	}
+
+	public void move_right() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+		
+		game.move(game.getBoard()[y][x].getHuman(), y, x+1);
+	}
+
+	public void move_left() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+
+		game.move(game.getBoard()[y][x].getHuman(), y, x-1);
+	}
+
+	public void dig_sw() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+		
+		if(game.getPower() > 0 && game.getBoard()[y+1][x-1].isBrick() 
+			&& game.getBoard()[y][x-1].isFree() && !game.getBoard()[y+1][x-1].isDig()) {
+			game.dig(y+1, x-1);
+		}
+		
+	}
+
+	public void dig_se() {
+		Game game = GraphicInterface.getGame();
+		int x = game.getHumanX();
+		int y = game.getHumanY();
+		
+		if(game.getPower() > 0 && game.getBoard()[y+1][x+1].isBrick() 
+			&& game.getBoard()[y][x+1].isFree() && !game.getBoard()[y+1][x+1].isDig()) {
+			game.dig(y+1, x+1);
 		}
 	}
 

@@ -35,10 +35,8 @@ public class Rover extends Creature implements Runnable {
 				game.move(this, y-1, x);
 				flag = true;
 			}
-		}
-		
-		if(!isStuck() && flag == false)
-			moveRandomly();
+		}/*else if(!isStuck() && flag == false)
+			moveRandomly();*/
 	}
 	
 	public Action flipCoin(Action a, Action b) {
@@ -75,13 +73,9 @@ public class Rover extends Creature implements Runnable {
 	public void run() {
 		System.out.println("ROVER");
 		while(alive) {
-			try {
 				int time = 300;
-				Thread.sleep(time);
+				sleep(time);
 				move();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 		
 	}

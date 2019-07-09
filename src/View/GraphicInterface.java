@@ -19,6 +19,7 @@ import model.Square;
 
 public class GraphicInterface extends Application implements Observer {
 	private volatile static Game game;
+	private volatile static Scene scene;
 	private Controller controller;
 	volatile boolean win = false;
 
@@ -44,7 +45,11 @@ public class GraphicInterface extends Application implements Observer {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		vbox.getChildren().add(gridPane);
+		scene = new Scene(vbox);
 		game = new Game();
+		gridPane.getChildren().add(buildGrid());
 		controller = new Controller(game);
 		game.addObserver(this);
 	//	Thread thread1 = new Thread(game);
@@ -52,20 +57,19 @@ public class GraphicInterface extends Application implements Observer {
 /*		Thread thread2 = new Thread(this);
 		thread2.start(); */
 	//	game.start();
-		gridPane.getChildren().add(buildGrid());
+		
 
 		System.out.println(game.getBoard()[0][0].getId());
 
 		Label label = new Label(game.getPower() + "");
-		vbox.getChildren().add(gridPane);
-		Scene scene = new Scene(vbox);
+		
 		primaryStage.setTitle("MazeRunner");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();
 		
-		scene.setOnKeyPressed(e -> {
+	/*	scene.setOnKeyPressed(e -> {
 			if(e.getCode() == KeyCode.L) 
 				controller.move_right();
 			if(e.getCode() == KeyCode.J)
@@ -78,7 +82,7 @@ public class GraphicInterface extends Application implements Observer {
 				controller.dig_sw();
 			if(e.getCode() == KeyCode.F)
 				controller.dig_se();
-		});
+		});*/
 
 
 	}
@@ -150,14 +154,18 @@ public class GraphicInterface extends Application implements Observer {
 	public static Game getGame() {
 		return game;
 	}
+	
+	public static Scene getScene() {
+		return scene;
+	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public synchronized void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
-		//gridPane = buildGrid();
-		TextInterface.showBoard();
-		vbox.getChildren().clear();
-		vbox.getChildren().add(buildGrid());	
+			//gridPane = buildGrid();
+			TextInterface.showBoard();
+			vbox.getChildren().clear();
+			vbox.getChildren().add(buildGrid());
 		});
 	}
 
