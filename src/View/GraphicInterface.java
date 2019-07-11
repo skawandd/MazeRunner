@@ -3,28 +3,25 @@ package View;
 import java.util.Observable;
 import java.util.Observer;
 
-import controller.Controller;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Game;
 import model.Square;
+import model.creatures.Action;
 
 public class GraphicInterface extends Application implements Observer {
 	private volatile static Game game;
 	private volatile static Scene scene;
-	private Controller controller;
 	volatile boolean win = false;
 
 	volatile VBox vbox = new VBox();
-//	volatile RunnableGridPane gridPane = new RunnableGridPane();
 	private GridPane gridPane = new GridPane();
 	
 	final private String sprites_path = "file:res/sprites/";
@@ -50,41 +47,13 @@ public class GraphicInterface extends Application implements Observer {
 		scene = new Scene(vbox);
 		game = new Game();
 		gridPane.getChildren().add(buildGrid());
-		controller = new Controller(game);
 		game.addObserver(this);
-	//	Thread thread1 = new Thread(game);
-	//	thread1.start();
-/*		Thread thread2 = new Thread(this);
-		thread2.start(); */
-	//	game.start();
-		
-
-		System.out.println(game.getBoard()[0][0].getId());
-
-		Label label = new Label(game.getPower() + "");
 		
 		primaryStage.setTitle("MazeRunner");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();
-		
-	/*	scene.setOnKeyPressed(e -> {
-			if(e.getCode() == KeyCode.L) 
-				controller.move_right();
-			if(e.getCode() == KeyCode.J)
-				controller.move_left();
-			if(e.getCode() == KeyCode.I)
-				controller.move_up();
-			if(e.getCode() == KeyCode.K)
-				controller.move_down();
-			if(e.getCode() == KeyCode.S)
-				controller.dig_sw();
-			if(e.getCode() == KeyCode.F)
-				controller.dig_se();
-		});*/
-
-
 	}
 
 	public GridPane buildGrid() {
@@ -99,16 +68,16 @@ public class GraphicInterface extends Application implements Observer {
 				s = board[y][x];
 				if (s.getJumper()!= null){
 					iv = new ImageView(new Image(jumper));
+				}else if(s.getPacer() != null && s.getPacer().getDirection() == Action.LEFT) {
+					iv = new ImageView(new Image(pacer_left));
+				}else if(s.getPacer() != null && s.getPacer().getDirection() == Action.RIGHT) {
+					iv = new ImageView(new Image(pacer_right));
 				}else if(s.getRover() != null) {
 					iv = new ImageView(new Image(rover));
-				} else if(s.getHuman() != null) {
+				} else if(s.getHuman() != null && s.getHuman().getDirection() == Action.RIGHT) {
 					iv = new ImageView(new Image(human_right));
-					/*
-					 * if (s.getJumper() != null) { FIXME: add getJumper, getPacer, getRover + side
-					 * iv = new ImageView(new Image(jumper)); if (s.getPacer() != null) { iv = new
-					 * ImageView(new Image(pacer_right)); if (s.getRover() != null) { iv = new
-					 * ImageView(new Image(rover));
-					 */
+				}else if(s.getHuman() != null && s.getHuman().getDirection() == Action.LEFT) {
+					iv = new ImageView(new Image(human_left));
 				} else if (s.getApple())
 					iv = new ImageView(new Image(apple));
 				else if (s.getDig())
@@ -162,32 +131,9 @@ public class GraphicInterface extends Application implements Observer {
 	@Override
 	public synchronized void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
-			//gridPane = buildGrid();
 			TextInterface.showBoard();
 			vbox.getChildren().clear();
 			vbox.getChildren().add(buildGrid());
 		});
 	}
-
-/*	@Override
-	public void run() {
-		while (!win) {
-			
-			//vbox.clear();
-			//vbox.add(buildGrid());
-			vbox.refresh(buildGrid());
-			//System.out.println(".");
-		//	gridPane.clear();
-		//	gridPane = buildGrid();
-		//	System.out.println("human x: " + game.getHumanX());
-			try {
-				Thread.sleep(200);
-			//	wait(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	
-	} */
 }

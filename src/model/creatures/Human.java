@@ -4,22 +4,26 @@ import View.GraphicInterface;
 import javafx.scene.input.KeyCode;
 
 public class Human extends Creature implements Runnable {
+	private Action direction;
 	
 	public Human(int y, int x) {
 		super(6, y, x);
-		// TODO Auto-generated constructor stub
+		direction = Action.RIGHT;
 	}
 
 	@Override
 	public void move() {
-		System.out.println("Listener");
 		GraphicInterface.getScene().setOnKeyPressed(e -> {
 			if(isFreezed())
 				e.consume();
-			if(e.getCode() == KeyCode.L) 
+			if(e.getCode() == KeyCode.L) {
 				move_right();
-			if(e.getCode() == KeyCode.J)
+				direction = Action.RIGHT;
+			}
+			if(e.getCode() == KeyCode.J) {
 				move_left();
+				direction = Action.LEFT;
+			}
 			if(e.getCode() == KeyCode.I)
 				move_up();
 			if(e.getCode() == KeyCode.K)
@@ -33,10 +37,12 @@ public class Human extends Creature implements Runnable {
 		
 	}
 	
+	public Action getDirection() {
+		return direction;
+	}
 	
 	@Override
 	public void run() {
-		System.out.println("HUMAN THREAD");
 		move();
 	}
 	

@@ -27,7 +27,7 @@ public class Jumper extends Creature implements Runnable {
 				int time = new Random().nextInt(8-3)+3;
 				Thread.sleep(time*1000);
 				move();
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

@@ -6,10 +6,10 @@ import java.util.Random;
 
 import View.TextInterface;
 import controller.CSVElement;
-import controller.Controller;
 import model.creatures.Creature;
 import model.creatures.Human;
 import model.creatures.Jumper;
+import model.creatures.Pacer;
 import model.creatures.Rover;
 import model.squares.Brick;
 import model.squares.Floor;
@@ -37,10 +37,6 @@ public class Game extends Observable implements Runnable {
 	public int start() {
 		while (!loose) {
 			TextInterface.showBoard();
-		//	new Controller(this).getKeyboard();
-			// readMap();
-			// setChanged();
-			// notifyObservers(this);
 		}
 		System.out.println("GG");
 		return 0;
@@ -182,11 +178,6 @@ public class Game extends Observable implements Runnable {
 
 	public int getHumanY() {
 		return humanY;
-		/*
-		 * for (int i = 0; i < creatureList.size(); i++) {
-		 * if(creatureList.get(i).isHuman()) return creatureList.get(i).getY(); } return
-		 * -1;
-		 */
 	}
 
 	public void setHumanY(int y) {
@@ -195,11 +186,6 @@ public class Game extends Observable implements Runnable {
 
 	public int getHumanX() {
 		return humanX;
-		/*
-		 * for (int i = 0; i < creatureList.size(); i++) {
-		 * if(creatureList.get(i).isHuman()) return creatureList.get(i).getX(); } return
-		 * -1;
-		 */
 	}
 
 	public void setHumanX(int x) {
@@ -357,6 +343,10 @@ public class Game extends Observable implements Runnable {
 				}
 				if (board[y][x].getRover() != null) {
 					Thread thread = new Thread((Rover) board[y][x].getRover());
+					thread.start();
+				}
+				if (board[y][x].getPacer() != null) {
+					Thread thread = new Thread((Pacer) board[y][x].getPacer());
 					thread.start();
 				}
 			}

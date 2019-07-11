@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 
 import model.creatures.Creature;
+import model.creatures.Human;
+import model.creatures.Jumper;
+import model.creatures.Pacer;
+import model.creatures.Rover;
 
 public abstract class Square {
 	protected int id, x, y;
@@ -161,31 +165,31 @@ public abstract class Square {
 		return false;
 	}
 	
-	public Creature getHuman() {
+	public Human getHuman() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 6)
-				return list.get(i);
+				return (Human)list.get(i);
 		}
 		return null;
 	}
-	public Creature getJumper() {
+	public Jumper getJumper() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 7)
-				return list.get(i);
+				return (Jumper)list.get(i);
 		}
 		return null;
 	}
-	public Creature getRover() {
+	public Rover getRover() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 9)
-				return list.get(i);
+				return (Rover)list.get(i);
 		}
 		return null;
 	}
-	public Creature getPacer() {
+	public Pacer getPacer() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 8)
-				return list.get(i);
+				return (Pacer)list.get(i);
 		}
 		return null;
 	}

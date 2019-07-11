@@ -18,7 +18,6 @@ public class Rover extends Creature implements Runnable {
 		boolean flag = false;
 		
 		if(a.equals(Action.HORIZONTAL)) {
-			System.out.println("HORIZONTAL");
 			if(x < game.getHumanX() && game.getBoard()[y][x+1].isFree()) {
 				game.move(this, y, x+1);
 				flag = true;
@@ -27,7 +26,6 @@ public class Rover extends Creature implements Runnable {
 				flag = true;
 			}
 		}else if(a.equals(Action.VERTICAL)){
-			System.out.println("VERTICAL");
 			if(y < game.getHumanY() && game.getBoard()[y+1][x].isFree()) {
 				game.move(this, y+1, x);
 				flag = true;
@@ -35,8 +33,8 @@ public class Rover extends Creature implements Runnable {
 				game.move(this, y-1, x);
 				flag = true;
 			}
-		}/*else if(!isStuck() && flag == false)
-			moveRandomly();*/
+		}else if(!isStuck() && flag == false)
+			moveRandomly();
 	}
 	
 	public Action flipCoin(Action a, Action b) {
@@ -51,7 +49,6 @@ public class Rover extends Creature implements Runnable {
 		boolean flag = false;
 		
 		while(!flag) {
-			System.out.println("moveRandomly");
 			i = new Random().nextInt(100);
 			if(i <= 25 && game.getBoard()[y-1][x].isFree()) {
 				game.move(this, y-1, x);

@@ -1,6 +1,5 @@
 package model.creatures;
 
-import java.util.Observable;
 import java.util.Random;
 
 import View.GraphicInterface;
@@ -106,7 +105,6 @@ public abstract class Creature {
 	public void freeze() {
 		Game game = GraphicInterface.getGame();
 		if (game.getBoard()[y][x].isFreezer() && !isFreezed()) {
-			System.out.println("FREEZE");
 			setFreezed(true);
 			int time = new Random().nextInt(3-1)+1;
 			sleep(time*1000);
