@@ -17,7 +17,6 @@ public class TextInterface {
 		
 		for(int y = 0; y < board.length; ++y) {
 			for(int x = 0; x < board[0].length; ++x) {
-				
 				System.out.print(getSquareStyle(board[y][x]) + " ");
 			}
 			System.out.println("");
@@ -36,7 +35,8 @@ public class TextInterface {
 		else if(s.getApple())
 			return '*';
 		else if(s.getDig())
-			return '¤';
+			return 'ï¿½';
+
 		
 		switch (s.getId()) {
 		case 0:

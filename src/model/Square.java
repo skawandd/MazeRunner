@@ -124,6 +124,12 @@ public abstract class Square {
 			return true;
 		return false;
 	}
+
+	public boolean isFreezer() {
+		if(id == 3)
+			return true;
+		return false;
+	}
 	
 	public boolean isFreezer() {
 		if(id == 3)
@@ -192,6 +198,7 @@ public abstract class Square {
 		}
 		return null;
 	}
+
 	public Pacer getPacer() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 8)
@@ -204,6 +211,7 @@ public abstract class Square {
 		if(getJumper() != null || getPacer() != null || getRover() != null)
 			return true;
 		return false;
+
 	}
 	
 	public int getHyperId() {
