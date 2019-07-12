@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5b7e39d-e761-4203-a476-cbf16523b151" name="Default Changelist" comment="fixed merge">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/creatures/Pacer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/creatures/Pacer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/creatures/Rover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/creatures/Rover.java" afterDir="false" />
+    <list default="true" id="f5b7e39d-e761-4203-a476-cbf16523b151" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/res/levels/level2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/level2.csv" afterDir="false" />
     </list>
     <list id="332fa2c6-00a8-414f-9fce-66e1701752fb" name="Leandro" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -302,7 +297,7 @@
       <updated>1562773610910</updated>
       <workItem from="1562773613871" duration="3968000" />
       <workItem from="1562874659661" duration="3012000" />
-      <workItem from="1562915198676" duration="20346000" />
+      <workItem from="1562915198676" duration="21141000" />
     </task>
     <task id="LOCAL-00001" summary="Menu Update">
       <created>1562936108972</created>
@@ -325,17 +320,24 @@
       <option name="project" value="LOCAL" />
       <updated>1562937006633</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed merge">
+      <created>1562942895264</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1562942895264</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27326000" />
+    <option name="totallyTimeSpent" value="28121000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858356" visible="true" weight="0.15503356" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49858356" visible="true" weight="0.15503356" />
       <window_info id="Structure" order="1" sideWeight="0.50141644" side_tool="true" weight="0.24966443" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -344,7 +346,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.3753541" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.3753541" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
