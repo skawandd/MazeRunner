@@ -10,51 +10,49 @@ public class TextInterface {
 		this.game = game;
 	}
 	
-	public void showBoard() {
-		Square[][] board = game.getBoard();
+	public static void showBoard() {
+		Square[][] board = GraphicInterface.getGame().getBoard();
 		
 		System.out.println(" ============ MAZE RUNNER ============ ");
 		
 		for(int y = 0; y < board.length; ++y) {
 			for(int x = 0; x < board[0].length; ++x) {
-				
 				System.out.print(getSquareStyle(board[y][x]) + " ");
 			}
 			System.out.println("");
 		}
 	}
 	
-	public String getSquareStyle(Square s) {
+	public static char getSquareStyle(Square s) {
 		if(s.getHuman() != null)
-			return "&";
+			return '&';
+		else if(s.getJumper() != null)
+			return 'J';
+		else if(s.getPacer() != null)
+			return 'P';
+		else if(s.getRover() != null)
+			return 'R';
 		else if(s.getApple())
-			return "*";
+			return '*';
 		else if(s.getDig())
-			return "¤";
+			return 'ï¿½';
+
 		
 		switch (s.getId()) {
 		case 0:
-			return ".";
+			return '.';
 		case 1:
-			return "#";
+			return '#';
 		case 2:
-			return "Y";
+			return 'Y';
 		case 3:
-			return "F";
+			return 'F';
 		case 4:
-			return"H";
+			return 'H';
 		case 5:
-			return "G";
-		case 6:
-			return "&";
-		case 7:
-			return "J";
-		case 8:
-			return "P";
-		case 9:
-			return "R";
+			return 'G';
 		default:
-			return " ";
+			return ' ';
 		}
 
 	}
