@@ -130,12 +130,7 @@ public abstract class Square {
 			return true;
 		return false;
 	}
-	
-	public boolean isFreezer() {
-		if(id == 3)
-			return true;
-		return false;
-	}
+
 	
 	public boolean isSupport() {
 		if((isBrick() && !isDig())|| isLadder())

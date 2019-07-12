@@ -35,10 +35,10 @@ public class Game extends Observable implements Runnable {
 	}
 
 	public int start() {
-		while (!loose) {
+		/*while (!loose) {
 			TextInterface.showBoard();
 		}
-		System.out.println("GG");
+		System.out.println("GG");*/
 		return 0;
 	}
 

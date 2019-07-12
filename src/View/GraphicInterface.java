@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,14 +27,12 @@ public class GraphicInterface extends Application implements Observer {
 
 	volatile VBox vbox = new VBox();
 	private GridPane gridPane = new GridPane();
-	private Scene scene;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 	}
 	public GraphicInterface(){
 		game = new Game();
-		controller = new Controller(game);
 		game.addObserver(this);
 		//	Thread thread1 = new Thread(game);
 		//	thread1.start();
@@ -53,22 +52,6 @@ public class GraphicInterface extends Application implements Observer {
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();*/
-
-		scene.setOnKeyPressed(e -> {
-			if(e.getCode() == KeyCode.L)
-				controller.move_right();
-			if(e.getCode() == KeyCode.J)
-				controller.move_left();
-			if(e.getCode() == KeyCode.I)
-				controller.move_up();
-			if(e.getCode() == KeyCode.K)
-				controller.move_down();
-
-			if(e.getCode() == KeyCode.S)
-				controller.dig_sw();
-			if(e.getCode() == KeyCode.F)
-				controller.dig_se();
-		});
 	}
 
 	public GridPane buildGrid() {
@@ -143,14 +126,10 @@ public class GraphicInterface extends Application implements Observer {
 	}
 
 
-	public Scene getScene(){
-		return scene;
-	}
-
 	@Override
 	public synchronized void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
-			TextInterface.showBoard();
+			///TextInterface.showBoard();
 			vbox.getChildren().clear();
 			vbox.getChildren().add(buildGrid());
 		});
