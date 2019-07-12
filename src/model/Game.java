@@ -352,6 +352,18 @@ public class Game extends Observable implements Runnable {
 			}
 		}
 	}
+	
+	public boolean isLoose() {
+		if(board[humanY][humanX].isMonster())
+			return true;
+		return false;
+	}
+	
+	public boolean isWin() {
+		if(board[humanY][humanX].isGoal())
+			return true;
+		return false;
+	}
 
 	public void checkAll(Square s) {
 		if (s.getApple()) {

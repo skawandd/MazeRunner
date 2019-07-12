@@ -71,6 +71,12 @@ public abstract class Square {
 		return this;
 	}
 	
+	public boolean isGoal() {
+		if(id == 5)
+			return true;
+		return false;
+	}
+	
 	public boolean getAlive() {
 		return this.alive;
 	}
@@ -192,6 +198,12 @@ public abstract class Square {
 				return (Pacer)list.get(i);
 		}
 		return null;
+	}
+	
+	public boolean isMonster() {
+		if(getJumper() != null || getPacer() != null || getRover() != null)
+			return true;
+		return false;
 	}
 	
 	public int getHyperId() {

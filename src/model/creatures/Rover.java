@@ -33,8 +33,11 @@ public class Rover extends Creature implements Runnable {
 				game.move(this, y-1, x);
 				flag = true;
 			}
-		}else if(!isStuck() && flag == false)
+		}
+		if(!isStuck() && flag == false) {
+			System.out.println("RANDOM");
 			moveRandomly();
+		}
 	}
 	
 	public Action flipCoin(Action a, Action b) {
@@ -49,19 +52,23 @@ public class Rover extends Creature implements Runnable {
 		boolean flag = false;
 		
 		while(!flag) {
-			i = new Random().nextInt(100);
-			if(i <= 25 && game.getBoard()[y-1][x].isFree()) {
+			i = new Random().nextInt(3);
+			if(i == 0 && game.getBoard()[y-1][x].isFree()) {
 				game.move(this, y-1, x);
 				flag = true;
-			} else if(25 < i && i <= 50 && game.getBoard()[y+1][x].isFree()) {
+				System.out.println("UP");
+			} else if(i == 1 && game.getBoard()[y+1][x].isFree()) {
 				game.move(this, y+1, x);
 				flag = true;
-			} else if(50 < i && i <= 75 && game.getBoard()[y][x-1].isFree()) {
+				System.out.println("DOWN");
+			} else if(i == 2 && game.getBoard()[y][x-1].isFree()) {
 				game.move(this, y, x-1);
 				flag = true;
-			} else if(75 < i && i <= 100 && game.getBoard()[y][x-1].isFree()) {
+				System.out.println("LEFT");
+			} else if(i == 3 && game.getBoard()[y][x-1].isFree()) {
 				game.move(this, y, x+1);
 				flag = true;
+				System.out.println("RIGHT");
 			}
 		}
 	}
