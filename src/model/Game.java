@@ -219,7 +219,6 @@ public class Game extends Observable implements Runnable {
 
 	public Hyper getNextHyper(int id) {
 		if (id < hyperList.size() - 1 && id >= 0) {
-			System.out.println(id + " L221" + getHyper(id + 1) + getHyper(id + 1).y + ";" + getHyper(id + 1).x);
 			return getHyper(id + 1);
 		}
 		return getHyper(0);

@@ -32,26 +32,11 @@ public class GraphicInterface extends Application implements Observer {
 
 	}
 	public GraphicInterface(){
-		game = new Game();
-		game.addObserver(this);
-		//	Thread thread1 = new Thread(game);
-		//	thread1.start();
-/*		Thread thread2 = new Thread(this);
-		thread2.start(); */
-		//	game.start();
-		gridPane.getChildren().add(buildGrid());
-
-		System.out.println(game.getBoard()[0][0].getId());
-
-		Label label = new Label(game.getPower() + "");
 		vbox.getChildren().add(gridPane);
 		scene = new Scene(vbox);
-		game.initElements();
-		/*primaryStage.setTitle("MazeRunner");
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.sizeToScene();
-		primaryStage.show();*/
+		game = new Game();
+		gridPane.getChildren().add(buildGrid());
+		game.addObserver(this);
 	}
 
 	public GridPane buildGrid() {
