@@ -68,31 +68,6 @@ public abstract class Square {
 	public boolean getAlive() {
 		return this.alive;
 	}
-
-	public boolean isJumper() {
-		if(id == 7)
-			return true;
-		return false;
-	}
-	
-	public boolean isPacer() {
-		if(id == 8)
-			return true;
-		return false;
-	}
-	
-	public boolean isRover() {
-		if(id == 9)
-			return true;
-		return false;
-	}
-	
-	public boolean isMonster() {
-		if(isJumper() || isPacer() || isRover())
-			return true;
-		return false;
-	}
-	
 	
 	public boolean isFree() {
 		if(!isBrick() || isDig())
@@ -134,6 +109,12 @@ public abstract class Square {
 	
 	public boolean isHyper() {
 		if(id == 2)
+			return true;
+		return false;
+	}
+	
+	public boolean isFreezer() {
+		if(id == 3)
 			return true;
 		return false;
 	}
@@ -185,8 +166,30 @@ public abstract class Square {
 		}
 		return null;
 	}
+	public Creature getJumper() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 7)
+				return list.get(i);
+		}
+		return null;
+	}
+	public Creature getRover() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 9)
+				return list.get(i);
+		}
+		return null;
+	}
+	public Creature getPacer() {
+		for(int i = 0; i < list.size(); ++i) {
+			if(list.get(i).getId() == 8)
+				return list.get(i);
+		}
+		return null;
+	}
 	
 	public int getHyperId() {
 		return -1;
 	}
+
 }

@@ -162,7 +162,7 @@ public class Game extends Observable implements Runnable {
 		board[7][1] = new Hyper(7, 1);
 		board[4][18] = new Hyper(4, 18);
 		board[15][10] = new Freezer();
-		
+
 		return board;
 	}
 
