@@ -10,7 +10,6 @@ public class Pacer extends Creature implements Runnable {
 		super(8, y, x);
 		direction = Action.LEFT;
 	}
-
 	public void move() {
 		Game game = GraphicInterface.getGame();
 		
@@ -26,7 +25,6 @@ public class Pacer extends Creature implements Runnable {
 			direction = Action.RIGHT;
 		}		
 	}
-
 	public Action getDirection() {
 		return direction;
 	}

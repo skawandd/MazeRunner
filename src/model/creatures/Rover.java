@@ -72,7 +72,6 @@ public class Rover extends Creature implements Runnable {
 			}
 		}
 	}
-
 	@Override
 	public void run() {
 		System.out.println("ROVER");
@@ -81,9 +80,5 @@ public class Rover extends Creature implements Runnable {
 				sleep(time);
 				move();
 		}
-		
 	}
-
-	
-
 }
