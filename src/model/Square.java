@@ -112,7 +112,7 @@ public abstract class Square {
 			return true;
 		return false;
 	}
-	
+
 	public boolean isFreezer() {
 		if(id == 3)
 			return true;
