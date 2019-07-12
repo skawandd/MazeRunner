@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+import model.creatures.Creature;
+import model.creatures.Human;
+import model.creatures.Jumper;
+import model.creatures.Pacer;
+import model.creatures.Rover;
+
 public abstract class Square {
 	protected int id, x, y;
 	private boolean apple, dig, alive;
@@ -65,6 +71,12 @@ public abstract class Square {
 		return this;
 	}
 	
+	public boolean isGoal() {
+		if(id == 5)
+			return true;
+		return false;
+	}
+	
 	public boolean getAlive() {
 		return this.alive;
 	}
@@ -119,6 +131,12 @@ public abstract class Square {
 		return false;
 	}
 	
+	public boolean isFreezer() {
+		if(id == 3)
+			return true;
+		return false;
+	}
+	
 	public boolean isSupport() {
 		if((isBrick() && !isDig())|| isLadder())
 			return true;
@@ -159,33 +177,41 @@ public abstract class Square {
 		return false;
 	}
 	
-	public Creature getHuman() {
+	public Human getHuman() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 6)
-				return list.get(i);
+				return (Human)list.get(i);
 		}
 		return null;
 	}
-	public Creature getJumper() {
+	public Jumper getJumper() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 7)
-				return list.get(i);
+				return (Jumper)list.get(i);
 		}
 		return null;
 	}
-	public Creature getRover() {
+	public Rover getRover() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 9)
-				return list.get(i);
+				return (Rover)list.get(i);
 		}
 		return null;
 	}
-	public Creature getPacer() {
+
+	public Pacer getPacer() {
 		for(int i = 0; i < list.size(); ++i) {
 			if(list.get(i).getId() == 8)
-				return list.get(i);
+				return (Pacer)list.get(i);
 		}
 		return null;
+	}
+	
+	public boolean isMonster() {
+		if(getJumper() != null || getPacer() != null || getRover() != null)
+			return true;
+		return false;
+
 	}
 	
 	public int getHyperId() {
