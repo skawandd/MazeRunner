@@ -17,13 +17,11 @@ import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
 import view.GraphicInterface;
-import view.TextInterface;
 
-public class Game extends Observable implements Runnable {
+public class Game extends Observable {
 	protected Square[][] board;
 	public static boolean win, loose;
 	private int humanX, humanY, power, moves;
-	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
 	private ArrayList<Thread> threadList = new ArrayList<Thread>();
 
@@ -35,14 +33,6 @@ public class Game extends Observable implements Runnable {
 		loose = false;
 		power = 2;
 		generateApple();
-	}
-
-	public int start() {
-		while (!loose) {
-			TextInterface.showBoard();
-		}
-		System.out.println("GG");
-		return 0;
 	}
 
 	public Square[][] loadMap() {
@@ -222,7 +212,6 @@ public class Game extends Observable implements Runnable {
 
 	public Hyper getNextHyper(int id) {
 		if (id < hyperList.size() - 1 && id >= 0) {
-			System.out.println(id + " L221" + getHyper(id + 1) + getHyper(id + 1).y + ";" + getHyper(id + 1).x);
 			return getHyper(id + 1);
 		}
 		return getHyper(0);
@@ -407,10 +396,4 @@ public class Game extends Observable implements Runnable {
 			t.interrupt();
 		}
 	}
-
-	@Override
-	public void run() {
-		start();
-	}
-
 }

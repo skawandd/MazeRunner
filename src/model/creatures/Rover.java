@@ -38,7 +38,6 @@ public class Rover extends Creature implements Runnable {
 			}
 		}
 		if(!isStuck() && flag == false) {
-			System.out.println("RANDOM");
 			moveRandomly();
 		}
 	}
@@ -74,7 +73,6 @@ public class Rover extends Creature implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("ROVER");
 		while(!win && !loose) {
 				int time = 300;
 				sleep(time);

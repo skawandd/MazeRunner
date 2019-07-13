@@ -15,7 +15,6 @@ import static view.Resources.pacer_left;
 import static view.Resources.pacer_right;
 import static view.Resources.rover;
 
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
@@ -31,7 +30,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import model.Game;
 import model.Square;
 import model.creatures.Action;
@@ -39,7 +37,6 @@ import model.creatures.Action;
 public class GraphicInterface extends Application implements Observer {
 	private volatile static Game game;
 	private volatile static Scene scene;
-	volatile boolean win = false;
 
 	volatile VBox vbox = new VBox();
 	private GridPane gridPane = new GridPane();
@@ -51,7 +48,6 @@ public class GraphicInterface extends Application implements Observer {
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();
-
 	}
 	
 	@Override
@@ -66,6 +62,7 @@ public class GraphicInterface extends Application implements Observer {
 	public void restart(Stage stage) {
 		scene.getWindow().hide();
 		init();
+		stage.setTitle("MazeRunner");
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -144,7 +141,6 @@ public class GraphicInterface extends Application implements Observer {
 
 	public void displayLoose() {
 		Platform.runLater(() -> {
-
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("GAME OVER");
 			alert.setHeaderText("GAME OVER...");
@@ -161,7 +157,6 @@ public class GraphicInterface extends Application implements Observer {
 	
 	public void displayWin() {
 		Platform.runLater(() -> {
-
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("YOU WIN");
 			alert.setHeaderText("YOU WIN!!!");
@@ -182,7 +177,6 @@ public class GraphicInterface extends Application implements Observer {
 		//	TextInterface.showBoard();
 			vbox.getChildren().clear();
 			vbox.getChildren().add(buildGrid());
-		//	System.out.println("UPDATE");
 		});
 	}
 }

@@ -1,14 +1,8 @@
 package view;
 
-import model.Game;
 import model.Square;
 
 public class TextInterface {
-	private Game game;
-	
-	public TextInterface(Game game) {
-		this.game = game;
-	}
 	
 	public static void showBoard() {
 		Square[][] board = GraphicInterface.getGame().getBoard();

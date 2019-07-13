@@ -163,10 +163,11 @@ public class CSVElement {
      * @return true if X and Y have been found
      * @throws FileNotFoundException 
      */
-    private boolean initXandY() throws FileNotFoundException{
+    @SuppressWarnings("resource")
+	private boolean initXandY() throws FileNotFoundException{
         
         BufferedReader br;
-        
+     
         br = new BufferedReader(new FileReader(csv));
         byte csvSizeX = 0;
         byte csvSizeY = -1;

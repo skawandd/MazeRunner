@@ -1,8 +1,5 @@
 
-
-
 import javafx.application.Application;
-import model.Game;
 import view.GraphicInterface;
 
 public class MainClass {
