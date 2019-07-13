@@ -15,6 +15,7 @@ import static view.Resources.pacer_left;
 import static view.Resources.pacer_right;
 import static view.Resources.rover;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
@@ -24,13 +25,13 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.Game;
 import model.Square;
 import model.creatures.Action;
@@ -45,18 +46,28 @@ public class GraphicInterface extends Application implements Observer {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-		vbox.getChildren().add(gridPane);
-		scene = new Scene(vbox);
-		game = new Game();
-		gridPane.getChildren().add(buildGrid());
-		game.addObserver(this);
-
 		primaryStage.setTitle("MazeRunner");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		primaryStage.show();
+
+	}
+	
+	@Override
+	public void init() {
+		vbox.getChildren().add(gridPane);
+		scene = new Scene(vbox);
+		game = new Game();
+		gridPane.getChildren().add(buildGrid());
+		game.addObserver(this);
+	}
+	
+	public void restart(Stage stage) {
+		scene.getWindow().hide();
+		init();
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public GridPane buildGrid() {
@@ -131,7 +142,7 @@ public class GraphicInterface extends Application implements Observer {
 		return scene;
 	}
 
-	public static void displayLoose() {
+	public void displayLoose() {
 		Platform.runLater(() -> {
 
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -141,7 +152,7 @@ public class GraphicInterface extends Application implements Observer {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				//TODO loadMap
+				restart(new Stage());
 			} else {
 				System.exit(0);
 			}
@@ -154,6 +165,7 @@ public class GraphicInterface extends Application implements Observer {
 		//	TextInterface.showBoard();
 			vbox.getChildren().clear();
 			vbox.getChildren().add(buildGrid());
+		//	System.out.println("UPDATE");
 		});
 	}
 }

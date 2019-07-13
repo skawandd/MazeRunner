@@ -372,7 +372,7 @@ public class Game extends Observable implements Runnable {
 		if(isLoose()) {
 			killThread();
 			if(!loose)
-				GraphicInterface.displayLoose();
+				new GraphicInterface().displayLoose();
 			loose = true;
 		}
 		if (s.getApple()) {

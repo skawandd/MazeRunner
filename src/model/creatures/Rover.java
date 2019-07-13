@@ -58,19 +58,15 @@ public class Rover extends Creature implements Runnable {
 			if(i == 0 && game.getBoard()[y-1][x].isFree()) {
 				game.move(this, y-1, x);
 				flag = true;
-				System.out.println("UP");
 			} else if(i == 1 && game.getBoard()[y+1][x].isFree()) {
 				game.move(this, y+1, x);
 				flag = true;
-				System.out.println("DOWN");
 			} else if(i == 2 && game.getBoard()[y][x-1].isFree()) {
 				game.move(this, y, x-1);
 				flag = true;
-				System.out.println("LEFT");
 			} else if(i == 3 && game.getBoard()[y][x-1].isFree()) {
 				game.move(this, y, x+1);
 				flag = true;
-				System.out.println("RIGHT");
 			}
 		}
 	}
