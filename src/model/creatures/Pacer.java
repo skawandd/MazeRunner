@@ -1,6 +1,7 @@
 package model.creatures;
 
 import static model.Game.loose;
+import static model.Game.win;
 
 import model.Game;
 import view.GraphicInterface;
@@ -35,7 +36,7 @@ public class Pacer extends Creature implements Runnable {
 	
 	@Override
 	public void run() {
-		while(!loose)
+		while(!win && !loose)
 			move();
 	}
 

@@ -21,7 +21,7 @@ import view.TextInterface;
 
 public class Game extends Observable implements Runnable {
 	protected Square[][] board;
-	public static boolean loose;
+	public static boolean win, loose;
 	private int humanX, humanY, power, moves;
 	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
@@ -31,6 +31,7 @@ public class Game extends Observable implements Runnable {
 		// board = createMap(17, 20); TODO default map
 		this.board = loadMap();
 		initElements();
+		win = false;
 		loose = false;
 		power = 2;
 		generateApple();
@@ -369,7 +370,12 @@ public class Game extends Observable implements Runnable {
 	}
 
 	public synchronized void checkAll(Square s) {
-		if(isLoose()) {
+		if(isWin()) {
+			killThread();
+			if(!win)
+				new GraphicInterface().displayWin();
+			win = true;
+		}else if(isLoose()) {
 			killThread();
 			if(!loose)
 				new GraphicInterface().displayLoose();

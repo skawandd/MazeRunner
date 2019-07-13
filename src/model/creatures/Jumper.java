@@ -1,8 +1,9 @@
 package model.creatures;
 
-import java.util.Random;
-
 import static model.Game.loose;
+import static model.Game.win;
+
+import java.util.Random;
 
 import view.GraphicInterface;
 
@@ -24,7 +25,7 @@ public class Jumper extends Creature implements Runnable {
 
 	@Override
 	public void run() {
-		while(!loose) {
+		while(!win && !loose) {
 				int time = new Random().nextInt(8-3)+3;
 				sleep(time*1000);
 				move();

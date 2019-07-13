@@ -1,6 +1,7 @@
 package model.creatures;
 
 import static model.Game.loose;
+import static model.Game.win;
 
 import java.util.Random;
 
@@ -74,7 +75,7 @@ public class Rover extends Creature implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("ROVER");
-		while(!loose) {
+		while(!win && !loose) {
 				int time = 300;
 				sleep(time);
 				move();

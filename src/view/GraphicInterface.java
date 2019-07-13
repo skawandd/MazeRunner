@@ -158,6 +158,23 @@ public class GraphicInterface extends Application implements Observer {
 			}
 		});
 	}
+	
+	public void displayWin() {
+		Platform.runLater(() -> {
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("YOU WIN");
+			alert.setHeaderText("YOU WIN!!!");
+			alert.setContentText("Continue?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				restart(new Stage());
+			} else {
+				System.exit(0);
+			}
+		});
+	}
 
 	@Override
 	public synchronized void update(Observable arg0, Object arg1) {
