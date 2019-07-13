@@ -1,19 +1,6 @@
 package view;
 
-import static view.Resources.apple;
-import static view.Resources.brick;
-import static view.Resources.dig;
-import static view.Resources.floor;
-import static view.Resources.freezer;
-import static view.Resources.goal;
-import static view.Resources.human_left;
-import static view.Resources.human_right;
-import static view.Resources.hyper;
-import static view.Resources.jumper;
-import static view.Resources.ladder;
-import static view.Resources.pacer_left;
-import static view.Resources.pacer_right;
-import static view.Resources.rover;
+import static view.Resources.*;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -78,18 +65,53 @@ public class GraphicInterface extends Application implements Observer {
 			for (int x = 0; x < board[0].length; ++x) {
 				s = board[y][x];
 				if (s.getJumper() != null) {
-					iv = new ImageView(new Image(jumper));
+					if(s.isLadder())
+						iv = new ImageView(new Image(jumper_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(jumper_freezer));
+					else
+						iv = new ImageView(new Image(jumper));
 				} else if (s.getPacer() != null && s.getPacer().getDirection() == Action.LEFT) {
-					iv = new ImageView(new Image(pacer_left));
+					if(s.isLadder())
+						iv = new ImageView(new Image(pacer_left_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(pacer_left_freezer));
+					else
+						iv = new ImageView(new Image(pacer_left));
 				} else if (s.getPacer() != null && s.getPacer().getDirection() == Action.RIGHT) {
-					iv = new ImageView(new Image(pacer_right));
+					if(s.isLadder())
+						iv = new ImageView(new Image(pacer_right_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(pacer_right_freezer));
+					else
+						iv = new ImageView(new Image(pacer_right));
 				} else if (s.getRover() != null) {
-					iv = new ImageView(new Image(rover));
+					if(s.isLadder())
+						iv = new ImageView(new Image(rover_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(rover_freezer));
+					else
+						iv = new ImageView(new Image(rover));
 				} else if (s.getHuman() != null && s.getHuman().getDirection() == Action.RIGHT) {
-					iv = new ImageView(new Image(human_right));
+					if(s.isLadder())
+						iv = new ImageView(new Image(human_right_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(human_right_freezer));
+					else
+						iv = new ImageView(new Image(human_right));
 				} else if (s.getHuman() != null && s.getHuman().getDirection() == Action.LEFT) {
-					iv = new ImageView(new Image(human_left));
+					if(s.isLadder())
+						iv = new ImageView(new Image(human_left_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(human_left_freezer));
+					else
+						iv = new ImageView(new Image(human_left));
 				} else if (s.getApple())
+					if(s.isLadder())
+						iv = new ImageView(new Image(apple_ladder));
+					else if(s.isFreezer())
+						iv = new ImageView(new Image(apple_freezer));
+					else
 					iv = new ImageView(new Image(apple));
 				else if (s.getDig())
 					iv = new ImageView(new Image(dig));

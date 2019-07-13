@@ -7,18 +7,19 @@ import model.creatures.Human;
 import model.creatures.Jumper;
 import model.creatures.Pacer;
 import model.creatures.Rover;
+import model.squares.Dig;
 
 public abstract class Square {
 	protected int id, x, y;
-	private boolean apple, dig, alive;
+	private boolean apple, alive;
+	private Dig dig;
 	public ArrayList<Creature> list;
 		
 	public Square(int id) {
 		this.id = id;
 		apple = false;
-		dig = false;
 		list = new ArrayList<Creature>();
-		
+		dig = new Dig();
 		if(id > 6) {
 			this.alive = true;	
 		}else 
@@ -44,7 +45,7 @@ public abstract class Square {
 	}
 	
 	public boolean getDig() {
-		return this.dig;
+		return dig.isActive();
 	}
 
 	public void addApple() {
@@ -59,12 +60,7 @@ public abstract class Square {
 	
 	public void addDig() {
 		if(id == 1)
-			dig = true;
-	}
-	
-	public void removeDig() {
-		if(id == 1)
-			dig = false;
+			dig.activate();
 	}
 	
 	public Square getSquare() {
@@ -100,7 +96,7 @@ public abstract class Square {
 	}
 
 	public boolean isDig() {
-		return dig;
+		return dig.isActive();
 	}
 	
 	public int getX() {
