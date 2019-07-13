@@ -21,16 +21,15 @@ import view.TextInterface;
 
 public class Game extends Observable implements Runnable {
 	protected Square[][] board;
-	public static volatile boolean loose;
+	public static boolean loose;
 	private int humanX, humanY, power, moves;
 	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
-	private ArrayList<Thread> threadList; 
+	private ArrayList<Thread> threadList = new ArrayList<Thread>();
 
 	public Game() {
 		// board = createMap(17, 20); TODO default map
 		this.board = loadMap();
-		threadList = new ArrayList<Thread>(); 
 		initElements();
 		loose = false;
 		power = 2;
@@ -272,8 +271,9 @@ public class Game extends Observable implements Runnable {
 			if (board[c.getY()][c.getX()].getHuman() != null)
 				refreshHuman(c.getY(), c.getX());
 		}
+		boolean[] status = {isLoose(), isWin()};
 		setChanged();
-		notifyObservers();
+		notifyObservers(status);
 		checkAll(board[c.getY()][c.getX()]);
 	}
 
@@ -288,7 +288,6 @@ public class Game extends Observable implements Runnable {
 		Random r = new Random();
 		int x, y;
 		boolean flag = false;
-		System.out.println("TELEPORT");
 		while (!flag) {
 			x = r.nextInt(board[0].length - 1);
 			y = r.nextInt(board.length - 1);
@@ -330,26 +329,27 @@ public class Game extends Observable implements Runnable {
 			for (int x = board[0].length - 1; x > 0; --x) {
 				if (board[y][x].isHyper())
 					addHyper((Hyper) board[y][x]);
+
 				if (board[y][x].getHuman() != null) {
 					setHumanY(y);
 					setHumanX(x);
 					Thread thread = new Thread((Human) board[y][x].getHuman());
-					threadList.add(thread); 
+					threadList.add(thread);
 					thread.start();
 				}
 				if (board[y][x].getJumper() != null) {
 					Thread thread = new Thread((Jumper) board[y][x].getJumper());
-					threadList.add(thread); 
+					threadList.add(thread);
 					thread.start();
 				}
 				if (board[y][x].getRover() != null) {
 					Thread thread = new Thread((Rover) board[y][x].getRover());
-					threadList.add(thread); 
+					threadList.add(thread);
 					thread.start();
 				}
 				if (board[y][x].getPacer() != null) {
 					Thread thread = new Thread((Pacer) board[y][x].getPacer());
-					threadList.add(thread); 
+					threadList.add(thread);
 					thread.start();
 				}
 			}
@@ -368,10 +368,12 @@ public class Game extends Observable implements Runnable {
 		return false;
 	}
 
-	public void checkAll(Square s) {
-		if (isLoose()) {
-			killThread(); 
-			GraphicInterface.displayLoose();
+	public synchronized void checkAll(Square s) {
+		if(isLoose()) {
+			killThread();
+			if(!loose)
+				GraphicInterface.displayLoose();
+			loose = true;
 		}
 		if (s.getApple()) {
 			powerUp();
@@ -389,17 +391,14 @@ public class Game extends Observable implements Runnable {
 		if (s.isHyper())
 			hyperTeleport(c);
 		if (s.isFreezer())
-			c.freeze();;
+			c.freeze();
 		checkStatus(c);
 		applyGravity(c);
 	}
-	public void killThread(){
-		for(Thread t : threadList) {
-			try {
-				t.interrupt();
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+	
+	public void killThread() {
+		for(Thread t: threadList) {
+			t.interrupt();
 		}
 	}
 

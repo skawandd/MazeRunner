@@ -24,6 +24,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,17 +42,16 @@ public class GraphicInterface extends Application implements Observer {
 
 	volatile VBox vbox = new VBox();
 	private GridPane gridPane = new GridPane();
-	
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		vbox.getChildren().add(gridPane);
 		scene = new Scene(vbox);
 		game = new Game();
 		gridPane.getChildren().add(buildGrid());
 		game.addObserver(this);
-		
+
 		primaryStage.setTitle("MazeRunner");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
@@ -69,17 +69,17 @@ public class GraphicInterface extends Application implements Observer {
 		for (int y = 0; y < board.length; ++y) {
 			for (int x = 0; x < board[0].length; ++x) {
 				s = board[y][x];
-				if (s.getJumper()!= null){
+				if (s.getJumper() != null) {
 					iv = new ImageView(new Image(jumper));
-				}else if(s.getPacer() != null && s.getPacer().getDirection() == Action.LEFT) {
+				} else if (s.getPacer() != null && s.getPacer().getDirection() == Action.LEFT) {
 					iv = new ImageView(new Image(pacer_left));
-				}else if(s.getPacer() != null && s.getPacer().getDirection() == Action.RIGHT) {
+				} else if (s.getPacer() != null && s.getPacer().getDirection() == Action.RIGHT) {
 					iv = new ImageView(new Image(pacer_right));
-				}else if(s.getRover() != null) {
+				} else if (s.getRover() != null) {
 					iv = new ImageView(new Image(rover));
-				} else if(s.getHuman() != null && s.getHuman().getDirection() == Action.RIGHT) {
+				} else if (s.getHuman() != null && s.getHuman().getDirection() == Action.RIGHT) {
 					iv = new ImageView(new Image(human_right));
-				}else if(s.getHuman() != null && s.getHuman().getDirection() == Action.LEFT) {
+				} else if (s.getHuman() != null && s.getHuman().getDirection() == Action.LEFT) {
 					iv = new ImageView(new Image(human_left));
 				} else if (s.getApple())
 					iv = new ImageView(new Image(apple));
@@ -122,34 +122,36 @@ public class GraphicInterface extends Application implements Observer {
 		}
 		return gridPane;
 	}
-	
+
 	public static Game getGame() {
 		return game;
 	}
-	
+
 	public static Scene getScene() {
 		return scene;
 	}
-	public static void displayLoose() {
-		
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirmation Dialog");
-		alert.setHeaderText("Look, a Confirmation Dialog");
-		alert.setContentText("Are you ok with this?");
 
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
-		    // ... user chose OK
-		} else {
-		    // ... user chose CANCEL or closed the dialog
-		}
-		
+	public static void displayLoose() {
+		Platform.runLater(() -> {
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("GAME OVER");
+			alert.setHeaderText("GAME OVER...");
+			alert.setContentText("Try again?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				//TODO loadMap
+			} else {
+				System.exit(0);
+			}
+		});
 	}
 
 	@Override
 	public synchronized void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
-			TextInterface.showBoard();
+		//	TextInterface.showBoard();
 			vbox.getChildren().clear();
 			vbox.getChildren().add(buildGrid());
 		});

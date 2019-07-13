@@ -79,8 +79,7 @@ public class Human extends Creature implements Runnable {
 	
 	@Override
 	public void run() {
-		//move();
-		GraphicInterface.getScene(); 
+		move();
 	}
 	
 	
