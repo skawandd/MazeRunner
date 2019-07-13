@@ -1,5 +1,7 @@
 package model.creatures;
 
+import static model.Game.loose;
+
 import model.Game;
 import view.GraphicInterface;
 
@@ -33,8 +35,7 @@ public class Pacer extends Creature implements Runnable {
 	
 	@Override
 	public void run() {
-		System.out.println("PACER");
-		while(alive)
+		while(!loose)
 			move();
 	}
 

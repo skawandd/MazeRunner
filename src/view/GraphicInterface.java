@@ -1,11 +1,30 @@
 package view;
 
+import static view.Resources.apple;
+import static view.Resources.brick;
+import static view.Resources.dig;
+import static view.Resources.floor;
+import static view.Resources.freezer;
+import static view.Resources.goal;
+import static view.Resources.human_left;
+import static view.Resources.human_right;
+import static view.Resources.hyper;
+import static view.Resources.jumper;
+import static view.Resources.ladder;
+import static view.Resources.pacer_left;
+import static view.Resources.pacer_right;
+import static view.Resources.rover;
+
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -14,8 +33,6 @@ import javafx.stage.Stage;
 import model.Game;
 import model.Square;
 import model.creatures.Action;
-import model.creatures.Jumper;
-import static view.Resources.*;
 
 public class GraphicInterface extends Application implements Observer {
 	private volatile static Game game;
@@ -112,6 +129,21 @@ public class GraphicInterface extends Application implements Observer {
 	
 	public static Scene getScene() {
 		return scene;
+	}
+	public static void displayLoose() {
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation Dialog");
+		alert.setHeaderText("Look, a Confirmation Dialog");
+		alert.setContentText("Are you ok with this?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    // ... user chose OK
+		} else {
+		    // ... user chose CANCEL or closed the dialog
+		}
+		
 	}
 
 	@Override

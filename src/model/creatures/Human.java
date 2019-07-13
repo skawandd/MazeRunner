@@ -1,5 +1,7 @@
 package model.creatures;
 
+import java.awt.event.KeyEvent;
+
 import javafx.scene.input.KeyCode;
 import view.GraphicInterface;
 
@@ -11,8 +13,43 @@ public class Human extends Creature implements Runnable {
 		direction = Action.RIGHT;
 	}
 
+	
+	public void KeyListener(KeyEvent e) {
+		switch (e.getKeyChar()) {
+		case 'L':
+			move_right();
+			direction = Action.RIGHT;
+			break;
+			
+		case 'J':
+			move_left();
+			direction = Action.LEFT;
+			break;
+			
+		case 'I':
+			move_up();
+			break;
+			
+		case 'K':
+			move_down();
+			break;
+			
+		case 'S':
+			dig_sw();
+			break;
+			
+		case 'F':
+			dig_se();
+			break;
+			
+		default:
+			break;
+		}
+	}
+	
 	@Override
 	public void move() {
+		
 		GraphicInterface.getScene().setOnKeyPressed(e -> {
 			if(isFreezed())
 				e.consume();
@@ -32,7 +69,6 @@ public class Human extends Creature implements Runnable {
 				dig_sw();
 			if(e.getCode() == KeyCode.F)
 				dig_se();
-			
 		});
 		
 	}
@@ -43,7 +79,8 @@ public class Human extends Creature implements Runnable {
 	
 	@Override
 	public void run() {
-		move();
+		//move();
+		GraphicInterface.getScene(); 
 	}
 	
 	

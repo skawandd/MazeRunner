@@ -16,18 +16,21 @@ import model.squares.Freezer;
 import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
+import view.GraphicInterface;
 import view.TextInterface;
 
 public class Game extends Observable implements Runnable {
 	protected Square[][] board;
-	private boolean loose;
+	public static volatile boolean loose;
 	private int humanX, humanY, power, moves;
 	private ArrayList<Creature> creatureList = new ArrayList<Creature>();
 	private ArrayList<Hyper> hyperList = new ArrayList<Hyper>();
+	private ArrayList<Thread> threadList; 
 
 	public Game() {
 		// board = createMap(17, 20); TODO default map
 		this.board = loadMap();
+		threadList = new ArrayList<Thread>(); 
 		initElements();
 		loose = false;
 		power = 2;
@@ -330,23 +333,23 @@ public class Game extends Observable implements Runnable {
 				if (board[y][x].getHuman() != null) {
 					setHumanY(y);
 					setHumanX(x);
-				}
-				if (board[y][x].getHuman() != null) {
-					setHumanY(y);
-					setHumanX(x);
 					Thread thread = new Thread((Human) board[y][x].getHuman());
+					threadList.add(thread); 
 					thread.start();
 				}
 				if (board[y][x].getJumper() != null) {
 					Thread thread = new Thread((Jumper) board[y][x].getJumper());
+					threadList.add(thread); 
 					thread.start();
 				}
 				if (board[y][x].getRover() != null) {
 					Thread thread = new Thread((Rover) board[y][x].getRover());
+					threadList.add(thread); 
 					thread.start();
 				}
 				if (board[y][x].getPacer() != null) {
 					Thread thread = new Thread((Pacer) board[y][x].getPacer());
+					threadList.add(thread); 
 					thread.start();
 				}
 			}
@@ -366,6 +369,10 @@ public class Game extends Observable implements Runnable {
 	}
 
 	public void checkAll(Square s) {
+		if (isLoose()) {
+			killThread(); 
+			GraphicInterface.displayLoose();
+		}
 		if (s.getApple()) {
 			powerUp();
 			s.removeApple();
@@ -374,7 +381,6 @@ public class Game extends Observable implements Runnable {
 		if (s.getHuman() != null)
 			c = s.getHuman();
 		else if (s.getJumper() != null) {
-			System.out.println("JUMPER");
 			c = s.getJumper();
 		} else if (s.getPacer() != null)
 			c = s.getPacer();
@@ -386,6 +392,15 @@ public class Game extends Observable implements Runnable {
 			c.freeze();;
 		checkStatus(c);
 		applyGravity(c);
+	}
+	public void killThread(){
+		for(Thread t : threadList) {
+			try {
+				t.interrupt();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 	}
 
 	@Override

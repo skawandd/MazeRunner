@@ -2,6 +2,8 @@ package model.creatures;
 
 import java.util.Random;
 
+import static model.Game.loose;
+
 import view.GraphicInterface;
 
 public class Jumper extends Creature implements Runnable {
@@ -22,14 +24,10 @@ public class Jumper extends Creature implements Runnable {
 
 	@Override
 	public void run() {
-		while(alive) {
-			try {
+		while(!loose) {
 				int time = new Random().nextInt(8-3)+3;
-				Thread.sleep(time*1000);
+				sleep(time*1000);
 				move();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
