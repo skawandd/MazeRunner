@@ -1,8 +1,7 @@
-package View;
+package view;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -15,6 +14,8 @@ import javafx.stage.Stage;
 import model.Game;
 import model.Square;
 import model.creatures.Action;
+import model.creatures.Jumper;
+import static view.Resources.*;
 
 public class GraphicInterface extends Application implements Observer {
 	private volatile static Game game;
@@ -24,22 +25,7 @@ public class GraphicInterface extends Application implements Observer {
 	volatile VBox vbox = new VBox();
 	private GridPane gridPane = new GridPane();
 	
-	final private String sprites_path = "file:res/sprites/";
-	final private String floor = sprites_path + "floor.png";
-	final private String brick = sprites_path + "brick.png";
-	final private String apple = sprites_path + "apple.png";
-	final private String freezer = sprites_path + "freezer.png";
-	final private String goal = sprites_path + "goal.png";
-	final private String human_right = sprites_path + "human_right.png";
-	final private String human_left = sprites_path + "human_left.png";
-	final private String hyper = sprites_path + "hyper.png";
-	final private String jumper = sprites_path + "jumper.png";
-	final private String ladder = sprites_path + "ladder.png";
-	final private String pacer_left = sprites_path + "pacer_left.png";
-	final private String pacer_right = sprites_path + "pacer_right.png";
-	final private String rover = sprites_path + "rover.png";
-	final private String dig = sprites_path + "dig.png";
-
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		

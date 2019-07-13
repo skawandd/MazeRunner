@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
-import View.TextInterface;
 import controller.CSVElement;
 import model.creatures.Creature;
 import model.creatures.Human;
@@ -17,6 +16,7 @@ import model.squares.Freezer;
 import model.squares.Goal;
 import model.squares.Hyper;
 import model.squares.Ladder;
+import view.TextInterface;
 
 public class Game extends Observable implements Runnable {
 	protected Square[][] board;

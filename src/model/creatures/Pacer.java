@@ -1,7 +1,7 @@
 package model.creatures;
 
-import View.GraphicInterface;
 import model.Game;
+import view.GraphicInterface;
 
 public class Pacer extends Creature implements Runnable {
 	private Action direction;

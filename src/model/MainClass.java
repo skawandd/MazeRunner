@@ -2,7 +2,7 @@ package model;
 
 import java.io.FileNotFoundException;
 
-import View.GraphicInterface;
+import view.GraphicInterface;
 
 public class MainClass {
 	

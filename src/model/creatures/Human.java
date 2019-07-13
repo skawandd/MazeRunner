@@ -1,7 +1,7 @@
 package model.creatures;
 
-import View.GraphicInterface;
 import javafx.scene.input.KeyCode;
+import view.GraphicInterface;
 
 public class Human extends Creature implements Runnable {
 	private Action direction;

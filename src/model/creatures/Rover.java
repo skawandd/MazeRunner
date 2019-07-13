@@ -2,8 +2,8 @@ package model.creatures;
 
 import java.util.Random;
 
-import View.GraphicInterface;
 import model.Game;
+import view.GraphicInterface;
 
 public class Rover extends Creature implements Runnable {
 

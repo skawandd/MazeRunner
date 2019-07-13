@@ -2,9 +2,9 @@ package model.creatures;
 
 import java.util.Random;
 
-import View.GraphicInterface;
 import model.Game;
 import model.Square;
+import view.GraphicInterface;
 
 public abstract class Creature {
 	private int id;

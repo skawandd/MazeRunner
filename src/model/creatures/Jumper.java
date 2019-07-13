@@ -2,7 +2,7 @@ package model.creatures;
 
 import java.util.Random;
 
-import View.GraphicInterface;
+import view.GraphicInterface;
 
 public class Jumper extends Creature implements Runnable {
 	
