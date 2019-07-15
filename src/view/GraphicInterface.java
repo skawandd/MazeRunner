@@ -1,6 +1,33 @@
 package view;
 
-import static view.Resources.*;
+import static view.Resources.apple;
+import static view.Resources.apple_freezer;
+import static view.Resources.apple_ladder;
+import static view.Resources.brick;
+import static view.Resources.dig;
+import static view.Resources.floor;
+import static view.Resources.freezer;
+import static view.Resources.goal;
+import static view.Resources.human_left;
+import static view.Resources.human_left_freezer;
+import static view.Resources.human_left_ladder;
+import static view.Resources.human_right;
+import static view.Resources.human_right_freezer;
+import static view.Resources.human_right_ladder;
+import static view.Resources.hyper;
+import static view.Resources.jumper;
+import static view.Resources.jumper_freezer;
+import static view.Resources.jumper_ladder;
+import static view.Resources.ladder;
+import static view.Resources.pacer_left;
+import static view.Resources.pacer_left_freezer;
+import static view.Resources.pacer_left_ladder;
+import static view.Resources.pacer_right;
+import static view.Resources.pacer_right_freezer;
+import static view.Resources.pacer_right_ladder;
+import static view.Resources.rover;
+import static view.Resources.rover_freezer;
+import static view.Resources.rover_ladder;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -8,14 +35,20 @@ import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.Game;
 import model.Square;
@@ -198,7 +231,13 @@ public class GraphicInterface extends Application implements Observer {
 		Platform.runLater(() -> {
 		//	TextInterface.showBoard();
 			vbox.getChildren().clear();
-			vbox.getChildren().add(buildGrid());
+			StackPane p = new StackPane();
+			p.setAlignment(Pos.TOP_LEFT);
+			Label l = new Label(game.getPower()+"");
+			l.setTextFill(Color.WHITE);
+			l.setFont(Font.font ("Verdana", FontWeight.BOLD, 14));
+			p.getChildren().addAll(buildGrid(), l);
+			vbox.getChildren().add(p);
 		});
 	}
 }

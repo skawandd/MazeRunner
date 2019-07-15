@@ -31,7 +31,7 @@ public class Game extends Observable {
 		initElements();
 		win = false;
 		loose = false;
-		power = 2;
+		power = 1;
 		generateApple();
 	}
 
@@ -371,7 +371,8 @@ public class Game extends Observable {
 			loose = true;
 		}
 		if (s.getApple()) {
-			powerUp();
+			if(s.getHuman() != null)
+				powerUp();
 			s.removeApple();
 		}
 		Creature c = null;
