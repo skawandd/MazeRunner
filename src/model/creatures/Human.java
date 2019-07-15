@@ -9,7 +9,7 @@ public class Human extends Creature implements Runnable {
 	private Action direction;
 	
 	public Human(int y, int x) {
-		super(6, y, x);
+		super((byte) 6, y, x);
 		direction = Action.RIGHT;
 	}
 

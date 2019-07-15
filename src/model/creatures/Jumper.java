@@ -10,7 +10,7 @@ import view.GraphicInterface;
 public class Jumper extends Creature implements Runnable {
 	
 	public Jumper(int y, int x) {
-		super(7, y, x);
+		super((byte) 7, y, x);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public class Pacer extends Creature implements Runnable {
 	private Action direction;
 
 	public Pacer(int y, int x) {
-		super(8, y, x);
+		super((byte) 8, y, x);
 		direction = Action.LEFT;
 	}
 

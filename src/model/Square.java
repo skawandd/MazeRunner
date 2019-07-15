@@ -15,7 +15,7 @@ public abstract class Square {
 	private Dig dig;
 	public ArrayList<Creature> list;
 		
-	public Square(int id) {
+	public Square(byte id) {
 		this.id = id;
 		apple = false;
 		list = new ArrayList<Creature>();
@@ -26,7 +26,7 @@ public abstract class Square {
 			this.alive = false;	
 	}
 	
-	public Square(int id, int y, int x) {
+	public Square(byte id, int y, int x) {
 		this(id);
 		this.y = y;
 		this.x = x;

@@ -7,12 +7,12 @@ import model.Square;
 import view.GraphicInterface;
 
 public abstract class Creature {
-	private int id;
+	private byte id;
 	protected int y, x;
 	private boolean teleported, freezed;
 	protected boolean alive;
 	
-	public Creature(int id, int y, int x) { 
+	public Creature(byte id, int y, int x) { 
 		this.id = id;
 		this.x = x;
 		this.y = y;

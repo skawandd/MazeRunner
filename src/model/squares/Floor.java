@@ -4,7 +4,7 @@ import model.Square;
 
 public class Floor extends Square {
 	public Floor() {
-		super(0);
+		super((byte) 0);
 	}
 
 }

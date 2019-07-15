@@ -4,7 +4,7 @@ import model.Square;
 
 public class Goal extends Square {
 	public Goal() {
-		super(5);
+		super((byte) 5);
 	}
 
 }

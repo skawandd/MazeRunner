@@ -11,7 +11,7 @@ import view.GraphicInterface;
 public class Rover extends Creature implements Runnable {
 
 	public Rover(int y, int x) {
-		super(9, y, x);
+		super((byte) 9, y, x);
 		// TODO Auto-generated constructor stub
 	}
 

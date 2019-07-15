@@ -4,7 +4,7 @@ import model.Square;
 
 public class Freezer extends Square {
 	public Freezer() {
-		super(3);
+		super((byte) 3);
 	}
 
 }
