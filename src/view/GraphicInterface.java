@@ -35,6 +35,7 @@ import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,6 +44,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -229,13 +233,15 @@ public class GraphicInterface extends Application implements Observer {
 	@Override
 	public synchronized void update(Observable arg0, Object arg1) {
 		Platform.runLater(() -> {
+		//	System.out.println(javafx.scene.text.Font.getFamilies());
 		//	TextInterface.showBoard();
 			vbox.getChildren().clear();
 			StackPane p = new StackPane();
 			p.setAlignment(Pos.TOP_LEFT);
-			Label l = new Label(game.getPower()+"");
-			l.setTextFill(Color.WHITE);
-			l.setFont(Font.font ("Verdana", FontWeight.BOLD, 14));
+			Label l = new Label("STAMINA: "+game.getPower()+" ");
+		//	l.setTextFill(Color.WHITE);
+			l.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 12));
+			l.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 			p.getChildren().addAll(buildGrid(), l);
 			vbox.getChildren().add(p);
 		});
