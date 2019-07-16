@@ -36,3 +36,4 @@ public class Resources {
 		final public static String rover_freezer = sprites_path + "freezer/rover_freezer.png";
 }
 
+										
