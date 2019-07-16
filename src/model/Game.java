@@ -41,11 +41,12 @@ public class Game extends Observable {
 			board = csvElement.getCsvGrid();
 			return board;
 		} catch (Exception e) {
-			return createMap(17, 20);
+			System.exit(0);
+			return null;//return createMap(17, 20);
 		}
 	}
 
-	public Square[][] createMap(int w, int h) {
+/*	public Square[][] createMap(int w, int h) {
 		Square[][] board = new Square[w][h];
 
 		for (int y = 0; y < board.length; ++y) {
@@ -155,7 +156,7 @@ public class Game extends Observable {
 		board[15][10] = new Freezer();
 
 		return board;
-	}
+	}*/
 
 	public void readMap() {
 		for (int y = 0; y < board.length; ++y) {
