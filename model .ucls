@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.3" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
   <class id="1" language="java" name="model.Game" project="MazeRunner" file="/MazeRunner/src/model/Game.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="212" width="186" x="535" y="-315"/>    
@@ -12,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="model.MainClass" project="MazeRunner" file="/MazeRunner/src/model/MainClass.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-44" y="-187"/>    
+    <position height="-1" width="-1" x="13" y="-202"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +76,7 @@
   </class>  
   <class id="9" language="java" name="model.squares.Brick" project="MazeRunner" 
     file="/MazeRunner/src/model/squares/Brick.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="627" y="299"/>    
+    <position height="-1" width="-1" x="629" y="300"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
